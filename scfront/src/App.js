@@ -7,7 +7,9 @@ import './css/main.css';
 function App() {
   return (
     <div>
+      <Routes>
         <Route path='/' element={<Main></Main>}></Route>
+      </Routes>
     </div>
   );
 }
