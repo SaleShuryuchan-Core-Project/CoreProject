@@ -1,0 +1,140 @@
+.subMain {
+    margin-top: 100px;
+    max-width: 1150px;
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    left: calc(38% - 30px);
+    min-height: calc(100vh - 80px);
+}
+
+.subHeader {
+    margin-top: 100px;
+    right: 202px;
+    top: 100px;
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    width: 1150px;
+    /* 부모 .subMain 기준으로 100% */
+    background-color: #fff;
+}
+
+.subHeaderWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40px;
+    background-color: #fff
+}
+
+
+.headerMenu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* 사이드 메뉴: 오른쪽에서 슬라이드 */
+.sideMenu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sideMenu.open {
+    transform: translateX(0);
+}
+
+.closeButton {
+    position: absolute;
+    background-color: #fff;
+    border: none;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+
+
+.mainSection1 {
+    gap: 12px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    margin-bottom: 40px;
+
+}
+
+
+
+.innerSection {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    padding: 50px;
+    background-color: #f5faff;
+    border-radius: 12px;
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05)
+}
+
+
+
+.bm1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px 10px;
+    width: 100%;
+    height: 50px;
+    max-width: 200px;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.bm:hover {
+    transform: translateY(-5px);
+}
+
+
+.bm1 span {
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+.mainImage {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 40px auto 0 auto;
+}

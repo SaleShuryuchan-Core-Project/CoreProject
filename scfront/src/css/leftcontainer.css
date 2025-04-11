@@ -1,0 +1,117 @@
+/* 전체 컨테이너 */
+.leftContainer {
+    /* position: fixed;
+    display: flex;
+    top: 50px;
+    left: 50px;
+    width: 400px;
+    background: linear-gradient(135deg, #d3f5f0, #a6f0e5);
+    padding: 40px 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    left: calc(50% - 700px); */
+    position: fixed;
+    left: calc(45% - 700px);
+    height: calc(100% - 80px);
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 타이틀 영역 */
+  .title p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  .title b {
+    color: #00b4aa;
+    font-weight: 700;
+  }
+  
+  .title h2 {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  /* 버튼 리스트 */
+  .searchList {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .searchList a {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #00b4aa;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #00b4aa;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .searchList a:hover {
+    background-color: #00b4aa;
+    color: #fff;
+  }
+  
+  /* 광고 영역 */
+  .adView {
+    margin-top: 40px;
+  }
+  
+  .adContainer {
+    background: #000;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    position: relative;
+  }
+  
+  .adWrapper {
+    overflow: hidden;
+  }
+  
+  .adSlide1 {
+    font-size: 16px;
+    padding: 20px 0;
+  }
+  
+  .adSlide1 a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .pageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .pageSwiper {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .allBtn img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .allBtn img:hover {
+    transform: scale(1.1);
+  }
+  

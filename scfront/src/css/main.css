@@ -1,0 +1,25 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: aquamarine;
+    /* background-color: aquamarine; */
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.leftLayoutContainer {
+    position: fixed;
+    left: calc(50% - 700px);
+    height: calc(100% - 80px);
+    justify-content: center;
+    /* display: flex
+; */
+    flex-direction: column;
+    z-index: 10001;
+}
