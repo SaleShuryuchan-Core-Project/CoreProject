@@ -12,7 +12,7 @@ const LeftContainer = () => {
         <div className='searchContainer'>
           <div className='title'>
             <p>
-              중고폰 <b>시세!</b> 모르겠어? <b>여기서 확인해!!!</b>
+              중고폰 <b>시세!dd</b> 모르겠어? <b>여기서 확인해!!!</b>
             </p>
             <h2>
               중고폰 판매 사이트 <b>폰 살래 말래</b>
