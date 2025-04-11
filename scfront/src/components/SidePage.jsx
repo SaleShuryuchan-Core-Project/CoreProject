@@ -15,7 +15,7 @@ const SidePage = () => {
 
   return (
     <div className="login-container">
-      <h2 className="login-title">로그인</h2>
+      <h2 className="login-title">로그인d</h2>
       <div className="login-box">
         <input type="text" placeholder="아이디" className="login-input" />
         <input type="password" placeholder="비밀번호" className="login-input" />
