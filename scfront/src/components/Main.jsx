@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import LeftContainer from "./LeftContainer";
 import MainContainer from "./MainContainer";
+import PriceCheck from "./PriceCheck";
 import "../css/leftcontainer.css";
 
 const Main = () => {
@@ -10,7 +11,7 @@ const Main = () => {
       <div className="container"></div>
         <Header />
         <LeftContainer />
-        <MainContainer />
+        <MainContainer></MainContainer>
    </div>
   );
 };

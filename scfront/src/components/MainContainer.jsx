@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PriceCheck from "./PriceCheck";
 import "../css/maincontainer.css";
 import Menu from "../img/menu.png";
 import Close from "../img/close.png";
@@ -9,6 +10,7 @@ import mainImage from "../img/gpt.png"
 const MainContain = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isPriceCheckOpen, setIsPriceCheckOpen] = useState(false);
   const nav = useNavigate();
 
   const toggleMenu = () => {
@@ -17,7 +19,6 @@ const MainContain = () => {
   };
 
   const closeMenuAndGoHome = () => {
-    console.log("X 버튼이 클릭되었습니다!");
     setMenuOpen(false);
     setTimeout(() => setVisible(false), 300);
   };
@@ -61,27 +62,28 @@ const MainContain = () => {
             <img src={mainImage} className="mainImage"></img>
           </div>
         </section>
-      </div>
-      <section className="mainSection1">
-        <div className="innerSection">
-          <a className="bm1">
-            <span>시세조회</span>
-          </a>
-          <a className="bm1">
-            <span>ATM</span>
-          </a>
-          <a className="bm1">
-            <span>이용방법</span>
-          </a>
-        </div>
-      </section>
-      <section>
-        <div className="inner">
-          <div>
-            <img src={mainImage} className="mainImage"></img>
+        <section className="mainSection1">
+          <div className="innerSection">
+            <a className="bm1">
+              <span>시세조회</span>
+            </a>
+            <a className="bm1">
+              <span>ATM</span>
+            </a>
+            <a className="bm1">
+              <span>이용방법</span>
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
+        <section>
+          <div className="inner">
+            <div>
+              <img src={mainImage} className="mainImage"></img>
+            </div>
+          </div>
+        </section>
+      </div>
+
     </main>
   );
 };
