@@ -5,12 +5,12 @@ import "../css/maincontainer.css";
 import Menu from "../img/menu.png";
 import Close from "../img/close.png";
 import Login from "./SidePage";
-import mainImage from "../img/gpt.png"
+import mainImage from "../img/gpt.png";
 
 const MainContain = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [isPriceCheckOpen, setIsPriceCheckOpen] = useState(false);
+  const [isPriceCheck, setIsPriceCheck] = useState(false);
   const nav = useNavigate();
 
   const toggleMenu = () => {
@@ -23,8 +23,16 @@ const MainContain = () => {
     setTimeout(() => setVisible(false), 300);
   };
 
+  const openPriceCheck = () => {
+    setIsPriceCheck(true);
+  };
+
+  const closePriceCheck = () => {
+    setIsPriceCheck(false);
+  };
+
   return (
-    <main className="subMain">
+    <div className="subMain">
       <header className="mainHeader">
         <div className="subHeaderWrapper">
           <button onClick={toggleMenu} className="headerMenu">
@@ -45,6 +53,13 @@ const MainContain = () => {
       )}
 
       <div id="MainPage">
+        {/* PriceCheck 오버레이 */}
+        {isPriceCheck && (
+          <div className="priceCheckOverlay">
+            <PriceCheck onClose={closePriceCheck} />
+          </div>
+        )}
+
         <section className="mainVisual">
           <div className="inner">
             <h1 style={{ textAlign: "center" }}>
@@ -59,12 +74,16 @@ const MainContain = () => {
               <br />
             </h1>
             <p></p>
-            <img src={mainImage} className="mainImage"></img>
+            <img src={mainImage} className="mainImage" alt="메인" />
           </div>
         </section>
         <section className="mainSection1">
           <div className="innerSection">
-            <a className="bm1">
+            <a
+              className="bm1"
+              onClick={openPriceCheck}
+              style={{ cursor: "pointer" }}
+            >
               <span>시세조회</span>
             </a>
             <a className="bm1">
@@ -78,13 +97,12 @@ const MainContain = () => {
         <section>
           <div className="inner">
             <div>
-              <img src={mainImage} className="mainImage"></img>
+              <img src={mainImage} className="mainImage" alt="메인" />
             </div>
           </div>
         </section>
       </div>
-
-    </main>
+    </div>
   );
 };
 
