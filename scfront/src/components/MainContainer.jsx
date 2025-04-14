@@ -13,6 +13,7 @@ import PriceCheck from "./PriceCheck";
 const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isPriceCheck, setIsPriceCheck] = useState(false);
   const nav = useNavigate();
 
   const toggleMenu = () => {
@@ -21,9 +22,16 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   };
 
   const closeMenuAndGoHome = () => {
-    console.log("X 버튼이 클릭되었습니다!");
     setMenuOpen(false);
     setTimeout(() => setVisible(false), 300);
+  };
+
+  const openPriceCheck = () => {
+    setIsPriceCheck(true);
+  };
+
+  const closePriceCheck = () => {
+    setIsPriceCheck(false);
   };
 
   return (

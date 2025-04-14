@@ -48,7 +48,7 @@
     max-width: 400px;
     height: 100vh;
     background-color: #fff;
-    z-index: 1000;
+    z-index: 1500;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
@@ -138,3 +138,16 @@
     display: block;
     margin: 40px auto 0 auto;
 }
+  
+  /* PriceCheck 오버레이 */
+  .priceCheckOverlay {
+    position: absolute;
+    margin-top: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;       
+    height: 100%;      
+    background-color: #fff;
+    z-index: 1000;     
+    overflow-y: auto;  /* 스크롤 */
+  }

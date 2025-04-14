@@ -18,10 +18,11 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Header />
-      <LeftContainer onPriceCheckClick={handleShowPriceCheck} />
-      <MainContainer forceShowPriceCheck={showPriceCheck} forceChangeTrigger={forceModeChange}/>
-    </div>
+      <div className="container"></div>
+        <Header />
+        <LeftContainer />
+        <MainContainer />
+   </div>
   );
 };
 

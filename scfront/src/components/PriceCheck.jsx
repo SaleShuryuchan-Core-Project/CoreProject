@@ -19,6 +19,7 @@ const PriceCheck = ({ onComplete }) => {
   const [modelList, setModelList] = useState([]); // 선택한 모델에 해당하는 시리즈 목록 배열 저장
   const [voumeList, setVoumeList] = useState([]); // 선택한 용량에 해당하는 시리즈 목록 배열 저장
   const [rawData, setRawData] = useState([]); // CSV파일에서 파싱된 전체 데이터를 저장하는 배열
+
   const [showGemini, setShowGemini] = useState(false); //  Gemini 컴포넌트 출력 여부
   const [finalPhoneName, setFinalPhoneName] = useState(''); //  Gemini로 보낼 핸드폰 이름
 
@@ -45,6 +46,7 @@ const PriceCheck = ({ onComplete }) => {
       setSelectedVoume(null);
     } else if (step === 2) {
       setSelectedModel(null);
+
       setSelectedVoume(null);
     } else if (step === 3) {
       setSelectedVoume(null);
