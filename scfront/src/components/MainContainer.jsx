@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../css/maincontainer.css";
 import Menu from "../img/menu.png";
 import Close from "../img/close.png";
-import Login from "./SidePage";
-import mainImage from "../img/gpt.png"
+import Login from "./SidePage";  // SidePage 컴포넌트
+import mainImage from "../img/gpt.png";
 
-const MainContain = () => {
+const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const nav = useNavigate();
@@ -39,7 +39,7 @@ const MainContain = () => {
               <img src={Close} alt="close" width="36px" />
             </button>
           </div>
-          <Login />
+          <Login setCurrentPage={setCurrentPage} /> {/* ✅ props 전달 */}
         </div>
       )}
 
@@ -57,28 +57,23 @@ const MainContain = () => {
               클릭 몇 번이면 확인 끝!
               <br />
             </h1>
-            <p></p>
-            <img src={mainImage} className="mainImage"></img>
+            <img src={mainImage} className="mainImage" alt="main" />
           </div>
         </section>
       </div>
+
       <section className="mainSection1">
         <div className="innerSection">
-          <a className="bm1">
-            <span>시세조회</span>
-          </a>
-          <a className="bm1">
-            <span>ATM</span>
-          </a>
-          <a className="bm1">
-            <span>이용방법</span>
-          </a>
+          <a className="bm1"><span>시세조회</span></a>
+          <a className="bm1"><span>ATM</span></a>
+          <a className="bm1"><span>이용방법</span></a>
         </div>
       </section>
+
       <section>
         <div className="inner">
           <div>
-            <img src={mainImage} className="mainImage"></img>
+            <img src={mainImage} className="mainImage" alt="main" />
           </div>
         </div>
       </section>
@@ -86,4 +81,4 @@ const MainContain = () => {
   );
 };
 
-export default MainContain;
+export default MainContainer;

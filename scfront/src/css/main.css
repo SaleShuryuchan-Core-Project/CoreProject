@@ -23,3 +23,13 @@ div {
     flex-direction: column;
     z-index: 10001;
 }
+/* 예: main.css */
+.main {
+    background-color: #a6fff0; /* 전체 배경 */
+    min-height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+  }
+  

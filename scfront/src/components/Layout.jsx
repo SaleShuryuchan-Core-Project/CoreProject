@@ -1,18 +1,20 @@
+// src/components/Layout.jsx
 import React from "react";
 import Header from "./Header";
 import LeftContainer from "./LeftContainer";
-import MainContainer from "./MainContainer";
+import { Outlet } from "react-router-dom";
 
-const Main = () => {
+const Layout = () => {
   return (
     <div className="main">
       <div className="container">
         <Header />
         <LeftContainer />
-        <MainContainer />
+        {/* 각 페이지가 이 안에 렌더링됨 */}
+        <Outlet />
       </div>
     </div>
   );
 };
 
-export default Main;
+export default Layout;

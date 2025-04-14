@@ -1,16 +1,21 @@
-import logo from './logo.svg';
-import { Route, Routes } from 'react-router-dom'
 import './App.css';
-import Main from './components/Main';
-import './css/main.css';
+import { Route, Routes } from 'react-router-dom';
+
+import Layout from './components/Layout';
+import MainContainer from './components/MainContainer';
+import MyPage from './components/MyPage';
+import CartPage from './components/CartPage';
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Main></Main>}></Route>
-      </Routes>
-    </div>
+    <Routes>
+      {/* 공통 레이아웃 적용 */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainContainer />} />
+        <Route path="mypage" element={<MyPage />} />
+        <Route path="cartpage" element={<CartPage />} />
+      </Route>
+    </Routes>
   );
 }
 

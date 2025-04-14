@@ -1,0 +1,118 @@
+.mypage-container {
+  background-color: #e8e8e8;
+  min-height: 100vh;
+  padding: 80px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.mypage-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* 왼쪽 영역 */
+.mypage-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mypage-box {
+  background-color: #abdfe0;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+.mypage-box-leftcontent {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+/* 오른쪽 영역 */
+.mypage-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mypage-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.logout-text {
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* 입력폼 */
+.mypage-form label {
+  font-size: 14px;
+  margin: 8px 0 4px;
+  display: block;
+}
+
+.mypage-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.zipcode-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.search-btn {
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* 하단 링크 */
+.mypage-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* 저장 버튼 */
+.save-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.save-btn {
+  padding: 12px 20px;
+  font-size: 14px;
+  background-color: #acb4e4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
