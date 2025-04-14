@@ -2,6 +2,8 @@ import React from "react";
 import '../css/mypage.css'; // 아래 CSS 연결
 
 const MyPage = () => {
+
+  
   return (
     <div className="mypage-container">
       <div className="mypage-main">

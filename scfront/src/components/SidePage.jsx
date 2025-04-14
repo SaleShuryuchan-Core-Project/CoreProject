@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { FaUserCircle, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
 import "../css/sidepage.css";
 import "../css/login.css";
 import "../css/signup.css";
@@ -12,7 +11,7 @@ import KakaoIcon from "../img/kakao.png";
 import GoogleIcon from "../img/google.png";
 import NaverIcon from "../img/naver.png";
 
-const SidePage = ({ setCurrentPage }) => {
+const SidePage = () => {
   const nav = useNavigate();
 
   const postcodeRef = useRef(null);
@@ -433,7 +432,6 @@ const SidePage = ({ setCurrentPage }) => {
               <input type="text" className="form-input" name="id" placeholder="아이디" onChange={handleChange} />
               <button className="button" onClick={check}>중복확인</button>
             </div>
-
             <div className="form-group password-wrap">
               <input
                 type={showPassword ? "text" : "password"}
@@ -444,8 +442,7 @@ const SidePage = ({ setCurrentPage }) => {
               />
               <span
                 className="eye-icon"
-                onClick={() => setShowPassword(!showPassword)}
-              >
+                onClick={() => setShowPassword(!showPassword)}>
                 👁️
               </span>
             </div>
@@ -460,37 +457,28 @@ const SidePage = ({ setCurrentPage }) => {
               />
               <span
                 className="eye-icon"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 👁️
               </span>
             </div>
-
-
             <div className="form-group">
               <input type="text" className="form-input-name" name="name" placeholder="이름" onChange={handleChange} />
             </div>
-
             <div className="form-group">
               <input type="text" className="form-input" name="nickname" placeholder="닉네임" onChange={handleChange} />
               <button className="button" onClick={check}>중복확인</button>
             </div>
-
             <div className="form-group">
               <input type="text" className="form-input-name" name="phone" placeholder="전화번호 -없이 작성해주세요" onChange={handleChange} />
             </div>
-
             <div className="form-group">
               <input className="form-input" name="email" placeholder="이메일" onChange={handleChange} />
               <button className="button" onClick={sendEmail}>인증요청</button>
             </div>
-
-
             <div className="form-group">
               {authStep === "sending" && (
                 <span className="auth-loading-msg">📨 인증번호 발송 중입니다...</span>
               )}
-
               {authStep === "input" && !isAuthSuccess && (
                 <>
                   <input
@@ -502,13 +490,10 @@ const SidePage = ({ setCurrentPage }) => {
                   <button className="button" onClick={emailCheck}>인증확인</button>
                 </>
               )}
-
               {isAuthSuccess && (
                 <span className="auth-success-msg">✅ 인증이 완료되었습니다.</span>
               )}
             </div>
-
-
             <div className="form-group">
               <input className="form-input-post"
                 type="text"
@@ -557,10 +542,7 @@ const SidePage = ({ setCurrentPage }) => {
                 name="detailAddress"
                 onChange={handleChange}
                 ref={detailAddressRef} />
-
             </div>
-
-
             <button className="submit-button" onClick={join}>가입하기</button>
           </div>
 
