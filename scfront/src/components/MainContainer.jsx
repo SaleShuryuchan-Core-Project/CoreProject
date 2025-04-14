@@ -62,7 +62,7 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
               <div className="inner">
                 <h1 style={{ textAlign: "center" }}>
                   <br />
-                  <b>중고폰, 지금 얼마일까??</b>
+                  <b>중고폰, 지금 얼마일까???</b>
                   <br />
                   궁금한 중고폰 시세,
                   <br />
