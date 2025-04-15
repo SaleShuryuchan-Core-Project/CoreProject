@@ -229,8 +229,6 @@ const SidePage = () => {
       .catch(err => {
         console.error("로그인 오류 잠시후 다시 시도해주세요", err);
       });
-
-
   };
 
   const handleLogout = () => { // 로그아웃 
@@ -313,7 +311,7 @@ const SidePage = () => {
 
   const signupGo = () => { // 회원가입 들어가기
     setSignUp(true);
-  }
+  };
 
   const handleChange = (e) => { // 회원가입 입력시 저장하는 함수
     setFormData({
@@ -359,7 +357,7 @@ const SidePage = () => {
           setSignUp(false);
         }
       });
-  }
+  };
 
   const sendEmail = () => { // 이메일 인증번호 발송
     if (!formData.email) {
@@ -420,183 +418,193 @@ const SidePage = () => {
           alert("중복되었습니다.");
         }
 
-      })
-  }
+      });
+  };
 
   return ( // 화면에 출력하는 곳
     <div>
-      {signUp ? // 회원가입 
-        (
-          <div className="signUp-container">
-            <div className="form-group">
-              <input type="text" className="form-input" name="id" placeholder="아이디" onChange={handleChange} />
-              <button className="button" onClick={check}>중복확인</button>
-            </div>
-            <div className="form-group password-wrap">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="form-input"
-                name="pw"
-                placeholder="비밀번호"
-                onChange={handleChange}
-              />
-              <span
-                className="eye-icon"
-                onClick={() => setShowPassword(!showPassword)}>
-                👁️
-              </span>
-            </div>
-
-            <div className="form-group password-wrap">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                className="form-input"
-                name="confirmPassword"
-                placeholder="비밀번호 확인"
-                onChange={handleChange}
-              />
-              <span
-                className="eye-icon"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                👁️
-              </span>
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-input-name" name="name" placeholder="이름" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-input" name="nickname" placeholder="닉네임" onChange={handleChange} />
-              <button className="button" onClick={check}>중복확인</button>
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-input-name" name="phone" placeholder="전화번호 -없이 작성해주세요" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <input className="form-input" name="email" placeholder="이메일" onChange={handleChange} />
-              <button className="button" onClick={sendEmail}>인증요청</button>
-            </div>
-            <div className="form-group">
-              {authStep === "sending" && (
-                <span className="auth-loading-msg">📨 인증번호 발송 중입니다...</span>
-              )}
-              {authStep === "input" && !isAuthSuccess && (
-                <>
-                  <input
-                    className="form-input"
-                    name="authCode"
-                    placeholder="인증 번호"
-                    onChange={(e) => setAuthCode(e.target.value)}
-                  />
-                  <button className="button" onClick={emailCheck}>인증확인</button>
-                </>
-              )}
-              {isAuthSuccess && (
-                <span className="auth-success-msg">✅ 인증이 완료되었습니다.</span>
-              )}
-            </div>
-            <div className="form-group">
-              <input className="form-input-post"
-                type="text"
-                id="sample4_postcode"
-                name="zipcode1"
-                onChange={handleChange}
-                placeholder="우편번호"
-                ref={postcodeRef}
-              />
-              <input className="form-input-post"
-                type="button"
-                onClick={sample4_execDaumPostcode}
-                value="우편번호 찾기"
-              />
-            </div>
-            <div className="form-group">
-              <input className="form-input"
-                type="text"
-                id="sample4_roadAddress"
-                placeholder="도로명주소"
-                name="zipcode2"
-                onChange={handleChange}
-                ref={roadAddressRef}
-              />
-            </div>
-            <div className="form-group">
-              <input className="form-input"
-                type="text"
-                id="sample4_jibunAddress"
-                placeholder="지번주소"
-                name="address"
-                onChange={handleChange}
-                ref={jibunAddressRef}
-              />
-            </div>
-            <div className="form-group">
-              <span className="form-input"
-                id="guide"
-                ref={guideRef}
-                style={{ color: "#999", display: "none" }}
-              ></span>
-              <input className="form-input"
-                type="text"
-                id="sample4_detailAddress"
-                placeholder="상세주소"
-                name="detailAddress"
-                onChange={handleChange}
-                ref={detailAddressRef} />
-            </div>
-            <button className="submit-button" onClick={join}>가입하기</button>
+      {signUp ? ( // 회원가입 
+        <div className="signUp-container">
+          <div className="form-group">
+            <input type="text" className="form-input" name="id" placeholder="아이디" onChange={handleChange} />
+            <button className="button" onClick={check}>중복확인</button>
+          </div>
+          <div className="form-group password-wrap">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-input"
+              name="pw"
+              placeholder="비밀번호"
+              onChange={handleChange}
+            />
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}>
+              👁️
+            </span>
           </div>
 
-        ) : !isLoggedIn ? ( // 로그아웃 된 상태에서 실행
-          <div className="login-container">
-            <h2 className="login-title">로그인</h2>
-            <div className="login-box">
-              <input type="text" placeholder="아이디" className="login-input" onChange={(e) => setId(e.target.value)} value={id} />
-              <input type="password" placeholder="비밀번호" className="login-input" onChange={(e) => setPw(e.target.value)} value={pw} />
-              <button className="login-btn" onClick={handleLogin}>로그인</button>
-              <div className="login-divider">
-                <div className="sns-login-buttons">
-                  <button className="sns-btn" id="google">
-                    <img src={GoogleIcon} alt="구글 로그인" />
-                  </button>
-                  <button className="sns-btn" onClick={loginWithKakao}>
-                    <img src={KakaoIcon} alt="카카오 로그인" />
-                  </button>
-                  <button className="sns-btn">
-                    <img src={NaverIcon} alt="네이버 로그인" />
-                  </button>
-                </div>
-              </div>
-              <div className="login-links">
-                <span>아이디 찾기</span>
-                <span>•</span>
-                <span>비밀번호 찾기</span>
+          <div className="form-group password-wrap">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              className="form-input"
+              name="confirmPassword"
+              placeholder="비밀번호 확인"
+              onChange={handleChange}
+            />
+            <span
+              className="eye-icon"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+              👁️
+            </span>
+          </div>
+          <div className="form-group">
+            <input type="text" className="form-input-name" name="name" placeholder="이름" onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <input type="text" className="form-input" name="nickname" placeholder="닉네임" onChange={handleChange} />
+            <button className="button" onClick={check}>중복확인</button>
+          </div>
+          <div className="form-group">
+            <input type="text" className="form-input-name" name="phone" placeholder="전화번호 -없이 작성해주세요" onChange={handleChange} />
+          </div>
+          <div className="form-group">
+            <input className="form-input" name="email" placeholder="이메일" onChange={handleChange} />
+            <button className="button" onClick={sendEmail}>인증요청</button>
+          </div>
+          <div className="form-group">
+            {authStep === "sending" && (
+              <span className="auth-loading-msg">📨 인증번호 발송 중입니다...</span>
+            )}
+            {authStep === "input" && !isAuthSuccess && (
+              <>
+                <input
+                  className="form-input"
+                  name="authCode"
+                  placeholder="인증 번호"
+                  onChange={(e) => setAuthCode(e.target.value)}
+                />
+                <button className="button" onClick={emailCheck}>인증확인</button>
+              </>
+            )}
+            {isAuthSuccess && (
+              <span className="auth-success-msg">✅ 인증이 완료되었습니다.</span>
+            )}
+          </div>
+          <div className="form-group">
+            <input className="form-input-post"
+              type="text"
+              id="sample4_postcode"
+              name="zipcode1"
+              onChange={handleChange}
+              placeholder="우편번호"
+              ref={postcodeRef}
+            />
+            <input className="form-input-post"
+              type="button"
+              onClick={sample4_execDaumPostcode}
+              value="우편번호 찾기"
+            />
+          </div>
+          <div className="form-group">
+            <input className="form-input"
+              type="text"
+              id="sample4_roadAddress"
+              placeholder="도로명주소"
+              name="zipcode2"
+              onChange={handleChange}
+              ref={roadAddressRef}
+            />
+          </div>
+          <div className="form-group">
+            <input className="form-input"
+              type="text"
+              id="sample4_jibunAddress"
+              placeholder="지번주소"
+              name="address"
+              onChange={handleChange}
+              ref={jibunAddressRef}
+            />
+          </div>
+          <div className="form-group">
+            <span className="form-input"
+              id="guide"
+              ref={guideRef}
+              style={{ color: "#999", display: "none" }}
+            ></span>
+            <input className="form-input"
+              type="text"
+              id="sample4_detailAddress"
+              placeholder="상세주소"
+              name="detailAddress"
+              onChange={handleChange}
+              ref={detailAddressRef} />
+          </div>
+          <button className="submit-button" onClick={join}>가입하기</button>
+        </div>
+      ) : !isLoggedIn ? ( // 로그아웃 된 상태에서 실행
+        <div className="login-container">
+          <h2 className="login-title">로그인</h2>
+          <div className="login-box">
+            <input type="text" placeholder="아이디" className="login-input" onChange={(e) => setId(e.target.value)} value={id} />
+            <input type="password" placeholder="비밀번호" className="login-input" onChange={(e) => setPw(e.target.value)} value={pw} />
+            <button className="login-btn" onClick={handleLogin}>로그인</button>
+            <div className="login-divider">
+              <div className="sns-login-buttons">
+                <button className="sns-btn" id="google">
+                  <img src={GoogleIcon} alt="구글 로그인" />
+                </button>
+                <button className="sns-btn" onClick={loginWithKakao}>
+                  <img src={KakaoIcon} alt="카카오 로그인" />
+                </button>
+                <button className="sns-btn">
+                  <img src={NaverIcon} alt="네이버 로그인" />
+                </button>
               </div>
             </div>
-            <div className="signup-box">계정이 없으신가요?
-              <span className="signup-link" onClick={signupGo}>가입하기</span>
+            <div className="login-links">
+              <span>아이디 찾기</span>
+              <span>•</span>
+              <span>비밀번호 찾기</span>
             </div>
           </div>
-        ) : ( // 로그인 된 상태에서 실행
-          <div className="login-success-box">
-            <div className="welcome-message">
-              <FaUserCircle size={32} className="user-icon" />
-              <span><strong>{nickname}</strong>님, 환영합니다!</span>
-            </div>
-            <div className="button-group">
-              <button className="mypage-btn" onClick={() => nav("/mypage")} >마이페이지</button>
-              <button className="cart-btn" onClick={() => nav("/cartpage")}>
-                <FaShoppingCart /> 장바구니
-              </button>
-              <button className="logout-btn" onClick={handleLogout} type="button">
-                <FaSignOutAlt /> 로그아웃
-              </button>
-            </div>
+          <div className="signup-box">계정이 없으신가요?
+            <span className="signup-link" onClick={signupGo}>가입하기</span>
           </div>
-        )}
-
+        </div>
+      ) : userInfo && userInfo.u_id === "admin" ? (  // admin 전용 레이아웃
+        <div className="login-success-box">
+          <div className="welcome-message">
+            <FaUserCircle size={32} className="user-icon" />
+            <span><strong>관리자</strong>님, 환영합니다!</span>
+          </div>
+          <div className="button-group">
+            <button className="productManagement-btn" onClick={() => nav("/ProductManagement")}>보유제품관리</button>
+            <button className="deliveryManagement-btn">배송관리</button>
+            <button className="logout-btn" onClick={handleLogout}>
+              <FaSignOutAlt /> 로그아웃
+            </button>
+          </div>
+        </div>
+      ) : (  // 일반 유저 전용 레이아웃 
+        <div className="login-success-box">
+          <div className="welcome-message">
+            <FaUserCircle size={32} className="user-icon" />
+            <span><strong>{nickname}</strong>님, 환영합니다!</span>
+          </div>
+          <div className="button-group">
+            <button className="mypage-btn" onClick={() => nav("/mypage")}>마이페이지</button>
+            <button className="cart-btn" onClick={() => nav("/cartpage")}>
+              <FaShoppingCart /> 장바구니
+            </button>
+            <button className="logout-btn" onClick={handleLogout}>
+              <FaSignOutAlt /> 로그아웃
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-
-  );// 리턴 종료
+  ); // 리턴 종료
 };
 
 export default SidePage;

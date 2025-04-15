@@ -9,6 +9,8 @@ import mainImage from "../img/gpt.png";
 import MyPage from "./MyPage";
 import CartPage from "./CartPage";
 import PriceCheck from "./PriceCheck";
+import ProductManagement from "./ProductManagement";
+import ProductAdd from "./ProductAdd";
 
 const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   const [menuOpen, setMenuOpen] = useState(false);
@@ -96,7 +98,8 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
         <Route path="/mypage" element={<MyPage></MyPage>}></Route>
         <Route path="/cartpage" element={<CartPage></CartPage>}></Route>
         <Route path="/pricepage" element={<PriceCheck></PriceCheck>} ></Route>
-        
+        <Route path="/ProductManagement" element={<ProductManagement></ProductManagement>}></Route>
+        <Route path="/ProductAdd" element={<ProductAdd></ProductAdd>}></Route>
       </Routes>
     </main>
   );

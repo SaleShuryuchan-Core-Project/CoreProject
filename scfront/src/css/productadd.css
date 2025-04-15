@@ -1,0 +1,100 @@
+/* 제품 추가 페이지의 전체 컨테이너 스타일 */
+.productadd-management-wrapper {
+    background: #fff;
+    width: 100%;              /* 너비 100%로 설정 */
+    max-width: 100%;          /* max-width도 100%로 설정 */
+    margin: 0 auto;           /* 가운데 정렬 유지 */
+    padding: 40px;
+    border-radius: 0;         /* radius 제거해 꽉찬 느낌 강조 */
+    box-shadow: none;         /* 그림자 제거로 깔끔한 느낌 */
+    min-height: calc(100vh - 80px); /* 화면 세로 전체를 채우도록 높이 설정 */
+  }
+  
+  /* 페이지 타이틀 */
+  .addmanagement-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  
+  /* 폼 레이아웃 및 입력 그룹 스타일 */
+  .add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px; /* 폼 너비는 너무 길지 않도록 제한 */
+    margin: 0 auto; /* 폼 중앙 정렬 */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  /* 입력 필드 스타일 (텍스트, 숫자, 날짜, 파일, 텍스트영역) */
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="date"],
+  .form-group input[type="file"],
+  .form-group textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input[type="text"]:focus,
+  .form-group input[type="number"]:focus,
+  .form-group input[type="date"]:focus,
+  .form-group textarea:focus {
+    border-color: #86b7fe;
+    outline: none;
+  }
+  
+  /* 텍스트 에어리어는 최소 높이를 부여해서 여유로운 입력 공간 제공 */
+  .form-group textarea {
+    min-height: 200px;
+  }
+  
+  .productadd-btn {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .productadd-btn:hover {
+    background-color: #ff5252;
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 1000px) {
+    .productadd-management-wrapper {
+      padding: 20px;
+    }
+    .addmanagement-title {
+      font-size: 2rem;
+    }
+    .productadd-btn {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+  
