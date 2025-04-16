@@ -1,8 +1,218 @@
 .mypage-container {
-  background-color: #e8e8e8;
+  background-color: #fff;
   min-height: 100vh;
   padding: 80px 20px;
   font-family: 'Noto Sans KR', sans-serif;
+}
+.table-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.custom-table th {
+  background-color: #e0f7fa;
+  color: #333;
+}
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  padding: 14px 20px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.card-row:hover {
+  border: 2px solid #339af0; /* 진한 하늘색 강조 */
+  box-shadow: 0px 4px 14px rgba(51, 154, 240, 0.3); /* 은은한 그림자 */
+  background-color: #f0f8ff; /* 연한 블루 배경 */
+}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1.8px solid #ddd; /* ✅ 선명한 테두리 */
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.03); /* 부드러운 그림자 */
+  margin-bottom: 12px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1.5px solid #d0d0d0; /* ✅ 명확한 테두리 */
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* 약간의 입체감 */
+  margin-bottom: 6px; /* ✅ 카드 간 거리 최소화 */
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.card-title {
+  font-weight: 500;
+  font-size: 15px;
+  color: #222;
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-date, .card-rating {
+  font-size: 14px;
+  color: #555;
+  white-space: nowrap;
+}
+
+.card-row:hover {
+  border: 1.8px solid #4a90e2; /* ✅ hover 시 강조 */
+  background-color: #f4faff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-row:hover {
+  border: 2px solid #4a90e2; /* ✅ hover 시 진한 테두리 강조 */
+  background-color: #f8fbff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+.card-title {
+  font-weight: 500;
+  font-size: 16px;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-date, .card-rating {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+
+.card-title, .card-content {
+  font-weight: 500;
+  flex: 1;
+}
+
+.card-rating {
+  margin: 0 12px;
+  font-weight: bold;
+  color: #444;
+  white-space: nowrap;
+}
+
+.card-date {
+  color: #888;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+
+.order-header-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #444;
+  background: #e0f7f7;
+  border-radius: 10px 10px 0 0;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+}
+
+.order-header-row span {
+  flex: 1;
+  text-align: center;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.order-table th {
+  background-color: #d3f1f3;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-table td {
+  background-color: #ffffff;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.order-table tr:last-child td {
+  border-bottom: none;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 16px 24px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid #ddd;
+}
+
+.order-row span {
+  flex: 1;
+  text-align: center;
+  padding: 0 8px;
+  border-right: 1px solid #eee;
+}
+
+.order-row span:last-child {
+  border-right: none;
 }
 
 .mypage-main {
@@ -115,4 +325,35 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.input-with-btn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-with-btn input {
+  flex: 8;
+  height: 42px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.input-with-btn .search-btn {
+  flex: 2;
+  display: flex;
+  align-items: center;     /* ✅ 세로 중앙 정렬 */
+  justify-content: center; /* ✅ 가로 중앙 정렬 */
+  height: 42px;            /* ✅ input과 동일한 높이 */
+  font-size: 14px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 8px;
+  line-height: 1;          /* ✅ 글자 baseline 조정 */
 }

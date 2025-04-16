@@ -9,9 +9,18 @@ import mainImage from "../img/gpt.png";
 import MyPage from "./MyPage";
 import CartPage from "./CartPage";
 import PriceCheck from "./PriceCheck";
+import Review from "./Review";
+import ReviewDetail from "./ReviewDetail";
+import Review_Write from "./Review_Write";
+import Request from "./RequestPage";
+import Request_Write from "./Request_Write";
+import RequestDetail from "./RequestDetail";
+import PaymentPage from "./PaymentPage";
+import PurchasePage from "./PurchasePage";
 import ProductManagement from "./ProductManagement";
 import ProductAdd from "./ProductAdd";
 import OrderDetails from "./OrderDetails";
+
 
 const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   const [menuOpen, setMenuOpen] = useState(false);
@@ -82,8 +91,8 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
           <section className="mainSection1">
             <div className="innerSection">
               <a className="bm1" onClick={() => nav("/pricepage")}><span>시세조회</span></a>
-              <a className="bm1"><span>ATM</span></a>
-              <a className="bm1"><span>이용방법</span></a>
+              <a className="bm1" onClick={() => nav("./review")}><span>리뷰게시판</span></a>
+              <a className="bm1" onClick={() => nav("./request")}><span>요청게시판</span></a>
             </div>
           </section>
 
@@ -99,6 +108,14 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
         <Route path="/mypage" element={<MyPage></MyPage>}></Route>
         <Route path="/cartpage" element={<CartPage></CartPage>}></Route>
         <Route path="/pricepage" element={<PriceCheck></PriceCheck>} ></Route>
+        <Route path="/paymentpage" element={<PaymentPage></PaymentPage>} ></Route>
+        <Route path="/review" element={<Review></Review>}></Route>
+        <Route path="/review_write" element={<Review_Write></Review_Write>}></Route>
+        <Route path="/review/:id" element={<ReviewDetail></ReviewDetail>}></Route>
+        <Route path="/request" element={<Request></Request>}></Route>
+        <Route path="/request_write" element={<Request_Write></Request_Write>}></Route>
+        <Route path="//request/:id" element={<RequestDetail></RequestDetail>}></Route>
+        <Route path="/purchase" element={<PurchasePage></PurchasePage>}></Route>
         <Route path="/ProductManagement" element={<ProductManagement></ProductManagement>}></Route>
         <Route path="/ProductAdd" element={<ProductAdd></ProductAdd>}></Route>
         <Route path="/OrderDetails" element={<OrderDetails></OrderDetails>}></Route>

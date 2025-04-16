@@ -22,8 +22,8 @@ const LeftContainer = () => {
           <div className='searchList'>
             <a href="/">HOME</a>
             <a href="/pricepage">시세조회</a>
-            <a href="">리뷰게시판</a>
-            <a href="">요청하기</a>
+            <a href="/review">리뷰게시판</a>
+            <a href="/request">요청하기</a>
           </div>
         </div>
       </div>

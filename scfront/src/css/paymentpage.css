@@ -1,154 +1,201 @@
 .payment-container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  }
-  
-  .payment-title {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
-  }
-  
-  /* 상품 정보 */
-  .product-box {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .product-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .product-info {
-    flex: 1;
-  }
-  
-  .product-name {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  
-  .product-color {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .price {
-    font-size: 26px;
-    font-weight: bold;
-    color: #0040ff;
-  }
-  
-  .price .won {
-    font-size: 20px;
-  }
-  
-  /* 섹션 제목 */
-  .section {
-    margin-top: 32px;
-  }
-  
-  .section h3 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  /* 공통 입력 필드 */
-  input,
-  textarea {
-    width: 100%;
-    padding: 14px;
-    font-size: 15px;
-    border: none;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    margin-bottom: 14px;
-    box-sizing: border-box;
-  }
-  
-  textarea {
-    resize: none;
-    height: 80px;
-  }
-  
-  /* 인라인 그룹 */
-  .inline-group {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-  
-  .inline-group input {
-    flex: 1;
-  }
-  
-  /* 라디오 버튼 */
-  .radio-group {
-    display: flex;
-    gap: 20px;
-    font-size: 14px;
-    margin-bottom: 12px;
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-  
-  .radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-  }
-  
-  /* 검색 버튼 */
-  .search-btn {
-    padding: 15px;
-    background-color: #a4c9ec;
-    border: none;
-    font-size: 13px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: white;
-    height: 45px;
-  }
-  
-  /* 주소 2단 분리 */
-  .address-row {
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* 결제 버튼 */
-  .pay-btn {
-    width: 40%;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #a4c9ec;
-    border: none;
-    border-radius: 8px;
-    margin-left: 30%;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  
-  .pay-btn:hover {
-    background-color: #333;
-  }
-  
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+/* 제목 */
+.payment-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* 상품 정보 */
+.product-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.product-color {
+  font-size: 14px;
+  color: #666;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: bold;
+  color: #0040ff;
+}
+
+.price .won {
+  font-size: 20px;
+}
+
+/* 섹션 제목 */
+.section {
+  margin-top: 32px;
+}
+
+.section h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+/* 기본 입력 필드 */
+input,
+textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* 인라인 전화번호 */
+.inline-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.inline-group input {
+  flex: 1;
+}
+
+.inline-group span {
+  font-size: 18px;
+  line-height: 48px;  /* input의 height에 맞춰서 정렬 */
+  vertical-align: middle;
+  padding-bottom: 15px;
+} 
+
+/* 라디오 버튼 */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* 수령인 입력창 크기 */
+.receiver-input {
+  width: 200px !important;   /* 우편번호 input과 동일한 너비 */
+  flex: none !important;     /* 공통 flex 규칙 무효화 */
+  padding: 14px;
+  font-size: 15px;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+
+/* 🔥 우편번호 검색 행 */
+.zip-search-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+
+.zip-search-row input.zipcode-input {
+  width: 200px !important;
+  flex: none !important;
+}
+
+/* 검색 버튼 */
+.search-btn {
+  width: 60px;
+  height: 50px;
+  padding: 14px; /* input과 동일한 패딩 */
+  background-color: #98dfa1;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;  /* hover 시간 */
+}
+
+.search-btn:hover{
+  background-color: #adf5ad;
+}
+
+
+/* 결제 버튼 */
+.pay-btn {
+  width: 150px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #a4c9ec;
+  border: none;
+  border-radius: 8px;
+  margin-left:280px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pay-btn:hover {
+  background-color: #333;
+}
+
+input.name-input,
+input.receiver-input {
+  width: 200px !important;
+  flex: none !important;
+}

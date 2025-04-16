@@ -47,9 +47,9 @@ const PaymentPage = () => {
 
       <div className="section">
         <h3>구매자</h3>
-        <input name="name" placeholder="이름" onChange={handleBuyerChange} />
+        <input name="name" className="name-input" placeholder="이름" onChange={handleBuyerChange} />
         <div className="inline-group">
-          <input name="phone1" maxLength={3} onChange={handleBuyerChange} />
+          <input name="phone1" placeholder="핸드폰번호" maxLength={3} onChange={handleBuyerChange} />
           <span>-</span>
           <input name="phone2" maxLength={4} onChange={handleBuyerChange} />
           <span>-</span>
@@ -64,17 +64,22 @@ const PaymentPage = () => {
           <label><input type="radio" name="addr" defaultChecked /> 신규 입력</label>
         </div>
 
-        <input name="recipient" placeholder="수령인" onChange={handleDeliveryChange} />
+        <input name="recipient" className="receiver-input" placeholder="수령인" onChange={handleDeliveryChange} />
         <div className="inline-group">
-          <input name="phone1" maxLength={3} onChange={handleDeliveryChange} />
+          <input name="phone1" placeholder="핸드폰번호" maxLength={3} onChange={handleDeliveryChange} />
           <span>-</span>
           <input name="phone2" maxLength={4} onChange={handleDeliveryChange} />
           <span>-</span>
           <input name="phone3" maxLength={4} onChange={handleDeliveryChange} />
         </div>
 
-        <div className="inline-group">
-          <input name="zipcode" placeholder="우편번호" onChange={handleDeliveryChange} />
+        <div className="zip-search-row">
+          <input
+            name="zipcode"
+            className="zipcode-input"
+            placeholder="우편번호"
+            onChange={handleDeliveryChange}
+          />
           <button className="search-btn">검색</button>
         </div>
 

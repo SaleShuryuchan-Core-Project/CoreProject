@@ -8,8 +8,6 @@ import "../css/signup.css";
 import logoutImg from "../img/logout.gif";
 
 import KakaoIcon from "../img/kakao.png";
-import GoogleIcon from "../img/google.png";
-import NaverIcon from "../img/naver.png";
 
 const SidePage = () => {
   const nav = useNavigate();
@@ -551,14 +549,8 @@ const SidePage = () => {
             <button className="login-btn" onClick={handleLogin}>로그인</button>
             <div className="login-divider">
               <div className="sns-login-buttons">
-                <button className="sns-btn" id="google">
-                  <img src={GoogleIcon} alt="구글 로그인" />
-                </button>
                 <button className="sns-btn" onClick={loginWithKakao}>
                   <img src={KakaoIcon} alt="카카오 로그인" />
-                </button>
-                <button className="sns-btn">
-                  <img src={NaverIcon} alt="네이버 로그인" />
                 </button>
               </div>
             </div>
