@@ -11,6 +11,7 @@ import CartPage from "./CartPage";
 import PriceCheck from "./PriceCheck";
 import ProductManagement from "./ProductManagement";
 import ProductAdd from "./ProductAdd";
+import OrderDetails from "./OrderDetails";
 
 const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
   const [menuOpen, setMenuOpen] = useState(false);
@@ -100,6 +101,7 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
         <Route path="/pricepage" element={<PriceCheck></PriceCheck>} ></Route>
         <Route path="/ProductManagement" element={<ProductManagement></ProductManagement>}></Route>
         <Route path="/ProductAdd" element={<ProductAdd></ProductAdd>}></Route>
+        <Route path="/OrderDetails" element={<OrderDetails></OrderDetails>}></Route>
       </Routes>
     </main>
   );

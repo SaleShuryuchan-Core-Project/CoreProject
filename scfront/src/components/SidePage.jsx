@@ -580,7 +580,7 @@ const SidePage = () => {
           </div>
           <div className="button-group">
             <button className="productManagement-btn" onClick={() => nav("/ProductManagement")}>보유제품관리</button>
-            <button className="deliveryManagement-btn">배송관리</button>
+            <button className="deliveryManagement-btn" onClick={() => nav("/OrderDetails")}>배송관리</button>
             <button className="logout-btn" onClick={handleLogout}>
               <FaSignOutAlt /> 로그아웃
             </button>

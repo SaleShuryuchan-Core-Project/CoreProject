@@ -1,0 +1,76 @@
+/* 전체 감싸는 컨테이너 */
+.order-details-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  /* 제목 스타일 */
+  .management-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #222;
+  }
+  
+  /* 각 주문 상세 항목을 감싸는 카드 박스 */
+  .order-item {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .order-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 주문 정보 텍스트 정렬 */
+  .order-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    line-height: 1.8;
+  }
+  
+  .order-info div {
+    flex: 1 1 45%;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* 주문 상태 드롭다운 스타일 */
+  .order-info select {
+    padding: 6px 12px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  }
+  
+  .order-info select:focus {
+    outline: none;
+    border-color: #5e9cff;
+  }  
+
+  .update-btn {
+    margin-left: 12px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .update-btn:hover {
+    background-color: #0056b3;
+  }  

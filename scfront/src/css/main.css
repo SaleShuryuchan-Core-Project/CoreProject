@@ -1,11 +1,12 @@
-body,
-html {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background: aquamarine;
-    /* background-color: aquamarine; */
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221920%22%20height%3D%221080%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22grad1%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20style%3D%22stop-color%3A%23D2B4DE%3Bstop-opacity%3A1%22%20/%3E%3Cstop%20offset%3D%2250%25%22%20style%3D%22stop-color%3A%23F7DCF6%3Bstop-opacity%3A1%22%20/%3E%3Cstop%20offset%3D%22100%25%22%20style%3D%22stop-color%3A%23FDEBD0%3Bstop-opacity%3A1%22%20/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23grad1)%22%20/%3E%3Cpath%20d%3D%22M0,540%20C300,600%20600,480%20900,540%20C1200,600%201500,720%201920,540%20L1920,1080%20L0,1080%20Z%22%20fill%3D%22none%22%20stroke%3D%22rgba(255,%20255,%20255,0.2)%22%20stroke-width%3D%2210%22%20/%3E%3Cpath%20d%3D%22M0,0%20C300,200%20600,0%20900,200%20C1200,400%201500,200%201920,0%20L1920,1080%20L0,1080%20Z%22%20fill%3D%22none%22%20stroke%3D%22rgba(255,%20255,%20255,0.2)%22%20stroke-width%3D%2210%22%20/%3E%3Cpath%20d%3D%22M0,800%20C300,750%20600,850%20900,800%20C1200,750%201500,650%201920,800%20L1920,1080%20L0,1080%20Z%22%20fill%3D%22none%22%20stroke%3D%22rgba(255,%20255,%20255,0.2)%22%20stroke-width%3D%228%22%20/%3E%3Cpath%20d%3D%22M0,900%20C300,950%20600,850%20900,900%20C1200,950%201500,1100%201920,900%20L1920,1080%20L0,1080%20Z%22%20fill%3D%22none%22%20stroke%3D%22rgba(255,%20255,%20255,0.2)%22%20stroke-width%3D%226%22%20/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 div {
