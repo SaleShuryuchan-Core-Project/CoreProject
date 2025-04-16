@@ -37,6 +37,29 @@
     display: none;
 }
 
+
+.subMain {
+    margin-top: 100px;
+    max-width: 1150px;
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    left: calc(38% - 30px);
+    min-height: calc(100vh - 80px);
+}
+
+.subHeader {
+    margin-top: 100px;
+    right: 202px;
+    top: 100px;
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    width: 1150px;
+    /* 부모 .subMain 기준으로 100% */
+    background-color: #fff;
+}
+
 .subHeaderWrapper {
     display: flex;
     flex-direction: row;
