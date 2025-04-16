@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/request_write.css';
+import axios from 'axios';
 
 // const Request_Write = () => {
 //   const [formData, setFormData] = useState({
@@ -42,36 +43,33 @@ const Request_Write = () => {
   //   navigate('/request', {state:formData});
   // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // 필수값 체크
+  
     if (!title || !detail || !writer) {
       alert('모든 항목을 입력해주세요.');
       return;
     }
-    
-    // 게시글 생성 및 저장
-    const newPost = {
-      id: Date.now(),
-      title,
-      detail,
-      writer,
-      date: new Date().toISOString().slice(0, 10),
-      image: preview // ✅ 이미지 base64 미리보기 주소도 함께 저장
-    };
-    
-    const stored = JSON.parse(localStorage.getItem('requestPosts')) || [];
-    stored.push(newPost);
-    localStorage.setItem('requestPosts', JSON.stringify(stored));
-    
-    
-    alert('작성 완료!');
-    navigate('/request')
+  
+    try {
+      const res = await axios.post("http://localhost:8083/controller/api/request/write", {
+        u_id: writer,
+        req_title: title,
+        req_content: detail
+      });
+  
+      if (res.data === "success") {
+        alert("작성 완료!");
+        navigate("/request");
+      } else {
+        alert("작성 실패! 서버 응답: " + res.data);
+      }
+    } catch (err) {
+      console.error("작성 중 오류:", err);
+      alert("요청 실패: 콘솔을 확인하세요.");
+    }
   };
-
-
-
+  
 return (
   // <div className="subMains">
     <form className="requestForm" onSubmit={handleSubmit}>

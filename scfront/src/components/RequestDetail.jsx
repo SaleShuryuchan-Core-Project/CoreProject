@@ -1,50 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../css/requestdetail.css';
-import { FaUser, FaCalendarAlt } from 'react-icons/fa';
 
 const RequestDetail = () => {
-  const { id } = useParams(); // URL에서 글 ID 추출
+  const { id } = useParams(); // URL에서 id 추출
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('requestPosts');
-    if (stored) {
-      const posts = JSON.parse(stored);
-      const found = posts.find(p => p.id === Number(id));
-      setPost(found);
-    }
+    axios.get(`http://localhost:8083/controller/api/request/detail/${id}`)
+      .then((res) => {
+        if (res.data) {
+          setPost(res.data);
+        } else {
+          console.warn("❗ 데이터 없음");
+        }
+      })
+      .catch((err) => {
+        console.error("요청글 상세 조회 실패:", err);
+      });
   }, [id]);
 
-  if (!post) return <div style={{ padding: '20px' }}>글을 찾을 수 없습니다.</div>;
-
+  if (!post) return <div className="requestContainer">글을 찾을 수 없습니다.</div>;
 
   return (
     <div className="requestContainer">
       <div className="requestCard">
-        <h2 className="requestTitle">{post.title}</h2>
+        <h2 className="requestTitle">{post.req_title}</h2>
+
         <div className="requestMeta">
-          <span><FaUser /> {post.writer}</span>
-          <span><FaCalendarAlt /> {post.date}</span>
+          <span><b>작성자:</b> {post.u_id}</span>
+          <span><b>작성일:</b> {post.created_at?.split('T')[0]}</span>
         </div>
 
-        <p className="requestContent">{post.detail}</p>
-          {post.image && (
-            <div style={{ marginTop: '20px' }}>
-            <img src={post.image} alt="첨부 이미지" style={{ maxWidth: '100%', borderRadius: '12px' }} />
-            </div>
-          )}
+        <p className="requestContent">{post.req_content}</p>
+
         <div className="buttonWrapper">
-          <button className="backBtn " onClick={() => navigate('/request')}>
-            목록으로
+          <button className="backBtn" onClick={() => navigate('/request')}>
+            목록
           </button>
         </div>
       </div>
     </div>
   );
 };
-
-
 
 export default RequestDetail;

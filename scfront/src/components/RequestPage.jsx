@@ -1,52 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // ✅ 서버 요청용
 import '../css/requestpage.css';
 
 const RequestPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const [posts, setPosts] = useState([]);
 
-  const [posts, setPosts] = useState(() => {
-    const stored = JSON.parse(localStorage.getItem('requestPosts')) || [];
-      // 날짜 내림차순 정렬 (최신 글이 위로)
-    return [...stored].sort((a, b) => b.id - a.id);
-    });
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
 
-// 게시판 페이지 이동
-const [currentPage, setCurrentPage] = useState(1);
-const postsPerPage = 5;
-// 게시글 목록 자르기
-const indexLast = currentPage * postsPerPage;
-const indexFirst = indexLast - postsPerPage;
-const currentPosts = posts.slice(indexFirst, indexLast);
-const totalPages = Math.ceil(posts.length / postsPerPage);   // 전체 페이지 수 계산
+  // ✅ 컴포넌트가 로딩될 때 서버에서 요청 목록 불러오기
+  useEffect(() => {
+    axios.get('http://localhost:8083/controller/api/request/list')
+      .then(res => setPosts(res.data))
+      .catch(err => console.error('요청 목록 조회 실패:', err));
+  }, []);
 
-
-useEffect(() => {
-  if (location.state && location.state.title && location.state.detail) {
-    const newPost = {
-      id: Date.now(),
-      title: location.state.title,
-      detail: location.state.detail,
-      writer: location.state.writer,
-      date: new Date().toISOString().split('T')[0],
-    };
-
-    const existing = JSON.parse(localStorage.getItem('requestPosts')) || [];
-    const updated = [newPost, ...existing];
-
-    // 최신순으로 정렬
-    const sorted = [...updated].sort((a, b) => b.id - a.id);
-
-    // localStorage + state 모두 갱신
-    localStorage.setItem('requestPosts', JSON.stringify(sorted));
-    setPosts(sorted); // ✅ 여기서 상태 갱신 꼭 해줘야 반영됨
-
-    // 상태 초기화
-    setTimeout(() => navigate('/request', { replace: true }), 0);
-  }
-}, [location, navigate]);
+  const indexLast = currentPage * postsPerPage;
+  const indexFirst = indexLast - postsPerPage;
+  const currentPosts = posts.slice(indexFirst, indexLast);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
 
   return (
     <div className='subMains'>
@@ -62,46 +36,35 @@ useEffect(() => {
         </thead>
         <tbody>
           {posts.length === 0 ? (
-            <tr className="requestBody">
-              <td colSpan="4">작성된 글이 없습니다.</td>
-            </tr>
+            <tr className="requestBody"><td colSpan="4">작성된 글이 없습니다.</td></tr>
           ) : (
-            // 게시글 순서
             currentPosts.map((post, index) => (
-              <tr className="requestBody" key={post.id}
-              onClick={() => navigate(`/request/${post.id}`)}
-              style={{ cursor: 'pointer' }}
-              >
-               <td>{(currentPage - 1) * postsPerPage + index + 1}</td> {/* 번호 1부터 시작 */}
-               <td className="title">{post.title}</td>
-               <td>{post.writer}</td>
-               <td>{post.date}</td>
+              <tr key={post.req_idx} className="requestBody"
+                onClick={() => navigate(`/request/${post.req_idx}`)}
+                style={{ cursor: 'pointer' }}>
+                <td>{(currentPage - 1) * postsPerPage + index + 1}</td>
+                <td className="title">{post.req_title}</td>
+                <td>{post.u_id}</td>
+                <td>{post.created_at?.split('T')[0]}</td>
               </tr>
             ))
           )}
         </tbody>
       </table>
-      
-    {/* 페이지 이동 버튼 추가 */}
-    <div className="requestPageNum">
-      {Array.from({ length: totalPages }, (_, i) => (
-        <span
-          key={i + 1}
-          className={`pageNumber ${currentPage === i + 1 ? 'active' : ''}`}
-          onClick={() => {
-            console.log('클릭됨!');
-            setCurrentPage(i + 1);}}>
-          {i + 1}
-        </span>
-      ))}
+
+      {/* 페이지네이션 */}
+      <div className="requestPageNum">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <span key={i + 1}
+            className={`pageNumber ${currentPage === i + 1 ? 'active' : ''}`}
+            onClick={() => setCurrentPage(i + 1)}>
+            {i + 1}
+          </span>
+        ))}
       </div>
 
-
-    {/* 글쓰기 버튼 */}
-      <button className="requestWrite-btn" onClick={() => navigate('/request_write')}>
-        글쓰기
-      </button>
-      
+      {/* 글쓰기 버튼 */}
+      <button className="requestWrite-btn" onClick={() => navigate('/request_write')}>글쓰기</button>
     </div>
   );
 };
