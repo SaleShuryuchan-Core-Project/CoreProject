@@ -66,6 +66,7 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
               <Login setCurrentPage={setCurrentPage} /> {/* ✅ props 전달 */}
             </div>
           )}
+    <div className="scrollable-content">
       <Routes>
         <Route path="/" element={<div>
 
@@ -120,6 +121,9 @@ const MainContainer = ({ setCurrentPage }) => {  // ✅ props 추가
         <Route path="/ProductAdd" element={<ProductAdd></ProductAdd>}></Route>
         <Route path="/OrderDetails" element={<OrderDetails></OrderDetails>}></Route>
       </Routes>
+      <div className="bottom-blank-space"></div>
+
+      </div>
     </main>
   );
 };
