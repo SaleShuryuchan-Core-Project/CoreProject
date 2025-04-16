@@ -13,7 +13,7 @@ const ProductManagementPage = () => {
 
   // 컴포넌트 마운트 시 스프링 백엔드에서 제품 데이터를 가져옴
   useEffect(() => {
-    axios.post("http://localhost:8083/controller/api/product/recommend")
+    axios.post("http://localhost:8083/controller/recommend")
       .then(response => {
         console.log("Fetched products: ", response.data);
         setProducts(response.data);
@@ -96,9 +96,9 @@ const ProductManagementPage = () => {
           />
           {/* Spring 서버에서 제공하는 이미지를 출력 */}
           <img 
-            src={`http://localhost:8083/api/product/images/${product.p_img1}`} 
+            src={product.p_img1} 
             alt="product" 
-            width="200" 
+            width="100" 
           />
           <div className="product-info">
             <div className="product-name">{product.p_name}</div>

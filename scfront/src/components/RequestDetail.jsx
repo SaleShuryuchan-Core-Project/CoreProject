@@ -4,12 +4,12 @@ import axios from 'axios';
 import '../css/requestdetail.css';
 
 const RequestDetail = () => {
-  const { id } = useParams(); // URL에서 id 추출
+  const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8083/controller/api/request/detail/${id}`)
+    axios.post('http://localhost:8083/controller/api/request/reqdetail', { id: Number(id) })
       .then((res) => {
         if (res.data) {
           setPost(res.data);
@@ -28,14 +28,14 @@ const RequestDetail = () => {
     <div className="requestContainer">
       <div className="requestCard">
         <h2 className="requestTitle">{post.req_title}</h2>
-
         <div className="requestMeta">
           <span><b>작성자:</b> {post.u_id}</span>
           <span><b>작성일:</b> {post.created_at?.split('T')[0]}</span>
         </div>
-
+        <div className="requestMeta">
+          <span><b>요청 모델:</b> {post.req_model}</span>
+        </div>
         <p className="requestContent">{post.req_content}</p>
-
         <div className="buttonWrapper">
           <button className="backBtn" onClick={() => navigate('/request')}>
             목록

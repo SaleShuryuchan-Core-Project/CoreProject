@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse'; // CSV파일을 자바스크립트에서 쉽게 읽기할 수 있게 해주는 라이브러리
 import '../css/pricecheck.css'
 import Gemini from './Gemini';
-
 import Reset from '../img/reset.png';
 import Toparrow from '../img/toparrow.png';
 import Samsung from '../img/samsung.png';
@@ -33,6 +32,10 @@ const PriceCheck = ({ onComplete }) => {
     const phoneName = getPhoneName();
     setFinalPhoneName(phoneName); // Gemini.jsx로 전달
     setShowGemini(true); // 결과 보이게
+    
+    if (typeof onComplete === "function") {
+      onComplete(phoneName);       // props가 함수일 경우에만 실행
+    }
   };
 
   // 현재 어떤 단계를 보여줄지 관리하는 상태
@@ -142,6 +145,11 @@ const PriceCheck = ({ onComplete }) => {
 
   return (
     <div className='priceCheckRoot'>
+       {showGemini ? (
+        <div className="geminiResultWrapper">
+          <Gemini phoneName={finalPhoneName} />
+        </div>
+      ) : (
       <section className='priceCheckSection'>
         <header className='priceCheckHeader'>
           <h1 className='priceCheckTitle'>
@@ -329,21 +337,17 @@ const PriceCheck = ({ onComplete }) => {
           {/* 시세조회 버튼 */}
           {selectedVoume && rawData.length > 0 && !showGemini &&  (
             <div className='priceCheckButton' >
-             <button className='checkButton' onClick={() => onComplete(`${selectedManufacturer} ${selectedSeries} ${selectedModel} ${selectedVoume}`)}>
-             평균 시세 조회
-              </button>
+             <button className='checkButton' onClick={handleConfirm}>
+                  평균 시세 조회
+             </button>
             </div>
           )}
         </div>
       </section>
-    {/*  시세조회 결과가 true면 아래에 Gemini 결과 표시 */}
-{showGemini && (
-  <div className="geminiResultWrapper">
-    <Gemini phoneName={finalPhoneName} />
+    )}
   </div>
-)}
-    </div>
   );
 };
+
 
 export default PriceCheck;

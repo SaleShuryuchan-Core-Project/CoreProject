@@ -78,7 +78,7 @@ const MyPage = () => {
           setRev(res.data);
           setRevInfo(true);
         }
-      }) 
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -321,81 +321,81 @@ const MyPage = () => {
           <div className="mypage-box">
             <h2>주문 내역</h2>
             <div className="mypage-box-leftcontent">
-              {!orderInfo? "주문내역이 없습니다" : (
+              {!orderInfo ? "주문내역이 없습니다" : (
                 <table className="order-table">
-                <thead>
-                  <tr>
-                    <th>제품명</th>
-                    <th>총 결제금액</th>
-                    <th>결제수단</th>
-                    <th>배송 상태</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.p_name}</td>
-                      <td>{item.pay_amount}원</td>
-                      <td>{item.pay_method}</td>
-                      <td>{item.order_status}</td>
+                  <thead>
+                    <tr>
+                      <th>제품명</th>
+                      <th>총 결제금액</th>
+                      <th>결제수단</th>
+                      <th>배송 상태</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              
+                  </thead>
+                  <tbody>
+                    {order.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.p_name}</td>
+                        <td>{item.pay_amount}원</td>
+                        <td>{item.pay_method}</td>
+                        <td>{item.order_status}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
               )}
             </div>
           </div>
           <div className="mypage-box">
-  <h2>내가 쓴 글</h2>
-  <div className="mypage-box-leftcontent">
+            <h2>내가 쓴 글</h2>
+            <div className="mypage-box-leftcontent">
 
-  {/* 요청글 */}
-  {reqInfo && req.length > 0 && (
-    <>
-      <h3 className="table-label">📦 제품 요청</h3>
-      <div className="card-list">
-        {req.map((item, index) => (
-          <div
-            className="card-row"
-            key={index}
-            onClick={() => nav(`/request/detail/${item.req_idx}`)} // 네가 원하는 경로로 수정
-          >
-            <span className="card-title">{item.req_title}</span>
-            <span className="card-date">{item.created_at}</span>
+              {/* 요청글 */}
+              {reqInfo && req.length > 0 && (
+                <>
+                  <h3 className="table-label">📦 제품 요청</h3>
+                  <div className="card-list">
+                    {req.map((item, index) => (
+                      <div
+                        className="card-row"
+                        key={index}
+                        onClick={() => nav(`/request/${item.req_idx}`)} // 네가 원하는 경로로 수정
+                      >
+                        <span className="card-title">{item.req_title}</span>
+                        <span className="card-date">{item.created_at}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* 리뷰글 */}
+              {revInfo && rev.length > 0 && (
+                <>
+                  <h3 className="table-label">📝 리뷰</h3>
+                  <div className="card-list">
+                    {rev.map((item, index) => (
+                      <div
+                        className="card-row"
+                        key={index}
+                        onClick={() => nav(`/review/${item.review_idx}`)} // 네가 원하는 경로로 수정
+                      >
+                        <span className="card-content">{item.review_content}</span>
+                        <span className="card-rating">⭐ {item.review_ratings}</span>
+                        <span className="card-date">{item.created_at}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {!reqInfo && !revInfo && (
+                <p>작성한 글이 없습니다.</p>
+              )}
+
+            </div>
+
           </div>
-        ))}
-      </div>
-    </>
-  )}
-
-  {/* 리뷰글 */}
-  {revInfo && rev.length > 0 && (
-    <>
-      <h3 className="table-label">📝 리뷰</h3>
-      <div className="card-list">
-        {rev.map((item, index) => (
-          <div
-            className="card-row"
-            key={index}
-            onClick={() => nav(`/review/detail/${item.review_idx}`)} // 네가 원하는 경로로 수정
-          >
-            <span className="card-content">{item.review_content}</span>
-            <span className="card-rating">⭐ {item.review_ratings}</span>
-            <span className="card-date">{item.created_at}</span>
-          </div>
-        ))}
-      </div>
-    </>
-  )}
-
-  {!reqInfo && !revInfo && (
-    <p>작성한 글이 없습니다.</p>
-  )}
-
-</div>
-
-</div>
 
         </div>
 
@@ -411,14 +411,23 @@ const MyPage = () => {
               <input type="text" name="name" value={formData.name} onChange={handleChange} />
               <label>닉네임</label>
               <div className="input-with-btn">
-                <input type="text" className="form-input" name="nickname" value={formData.nickname} onChange={handleChange} readOnly={!isEditable} />
-                <button className="search-btn" onClick={check} >중복확인</button>
+                <input
+                  type="text"
+                  className="form-input"
+                  name="nickname"
+                  value={formData.nickname}
+                  onChange={handleChange}
+                  readOnly={!isEditable}
+                />
+                <button className="search-btn" onClick={check}>중복확인</button>
               </div>
+
               <label>휴대폰 번호</label>
               <input type="text" className="form-input" name="phone" value={formData.phone} readOnly={!isEditable} onChange={handleChange} />
               <label>주소</label>
-              <div className="form-group">
-                <input className="form-input-post"
+              <div className="input-with-btn">
+                <input
+                  className="form-input"
                   type="text"
                   id="sample4_postcode"
                   name="zipcode1"
@@ -427,13 +436,16 @@ const MyPage = () => {
                   ref={postcodeRef}
                   value={formData.zipcode1}
                 />
-                <input className="form-input-post"
-                  type="button"
+                <button
+                  className="search-btn"
                   onClick={sample4_execDaumPostcode}
-                  readOnly={!isEditable}
-                  value="우편번호 찾기"
-                />
+                  disabled={!isEditable}
+                >
+                  우편번호 찾기
+                </button>
               </div>
+
+
               <div className="form-group">
                 <input className="form-input"
                   type="text"

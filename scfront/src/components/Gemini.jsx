@@ -3,19 +3,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { marked } from 'marked';
 import '../css/dd.css';
+import { useNavigate } from 'react-router-dom';
 
 function GeminiChat({ phoneName: initialPhoneName = '' }) {
   const [phoneName, setPhoneName] = useState(initialPhoneName);
   const [answer, setAnswer] = useState('');
   const [splitSections, setSplitSections] = useState({});
   const [loading, setLoading] = useState(false);
+  const [recommended, setRecommended] = useState([]); // ✅ 추천 상품 상태
+  const nav = useNavigate();
 
+  // ✅ Gemini 분석 실행
   useEffect(() => {
     if (!initialPhoneName) return;
     setPhoneName(initialPhoneName);
     handleAsk(initialPhoneName);
   }, [initialPhoneName]);
 
+  // ✅ 보유 상품 API 호출
+  useEffect(() => {
+    axios.get("http://localhost:8083/controller/api/product/recommend")
+      .then((res) => {console.log(res.data);
+        setRecommended(res.data);})
+      .catch((err) => console.error("추천 상품 로딩 실패", err));
+  }, []);
+
+  // ✅ Gemini API 호출 함수
   const handleAsk = async (queryName) => {
     try {
       setLoading(true);
@@ -30,8 +43,7 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
       });
 
       const rawText = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || "답변이 없습니다.";
-      const html = marked.parse(rawText);
-      setAnswer(html);
+      setAnswer(marked.parse(rawText));
 
       const part1 = rawText.split("▶ 1.")[1]?.split("▶ 2.")[0] || '';
       const part2 = rawText.split("▶ 2.")[1]?.split("▶ 3.")[0] || '';
@@ -42,6 +54,7 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
         part2: marked.parse(part2),
         part3: marked.parse(part3),
       });
+
       setLoading(false);
     } catch (error) {
       console.error("에러 발생:", error);
@@ -50,21 +63,21 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
     }
   };
 
+  // ✅ 컴포넌트 렌더링
   return (
     <div className="gemini-container">
       <h2>📱 예상시세</h2>
-  
+
       {loading && <p className="loading-text">분석 중입니다...</p>}
-  
+
       {!loading && answer && (
         <div className="gemini-section">
           <h3>중고폰 모델 분석</h3>
-          {/* 분석 요약 내용만 보여주는 부분 */}
           <div className="answer-container" dangerouslySetInnerHTML={{ __html: answer.split("▶ 1.")[0] }} />
         </div>
       )}
-  
-      {/* 상세 분석 결과 - 스크롤 영역 추가 */}
+
+      {/* 상세 분석 결과 */}
       <div className="gemini-scrollbox">
         {!loading && splitSections.part1 && (
           <details className="gemini-details" open>
@@ -72,14 +85,12 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
             <div dangerouslySetInnerHTML={{ __html: splitSections.part1 }} />
           </details>
         )}
-  
         {!loading && splitSections.part2 && (
           <details className="gemini-details">
             <summary>2. ⚠ 고질적 문제점 분석</summary>
             <div dangerouslySetInnerHTML={{ __html: splitSections.part2 }} />
           </details>
         )}
-  
         {!loading && splitSections.part3 && (
           <details className="gemini-details">
             <summary>3. 📌 요약</summary>
@@ -87,7 +98,8 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
           </details>
         )}
       </div>
-  
+
+      {/* 경고 안내 */}
       {!loading && (
         <div className="warning-box">
           <p className="warning-title">
@@ -98,9 +110,28 @@ function GeminiChat({ phoneName: initialPhoneName = '' }) {
           </p>
         </div>
       )}
+
+      {/* ✅ 추천 상품 카드 영역 */}
+      {!loading && recommended.length > 0 && (
+        <div className="recommend-wrapper">
+          <h3>📦 보유 중고폰</h3>
+          <div className="recommend-list">
+            {recommended.map((phone, idx) => (
+              <div
+                className="recommend-card"
+                key={idx}
+                onClick={() => nav(`/product/${phone.p_idx}`)}
+              >
+                <img src={phone.p_img1} alt={phone.p_name} className="recommend-img" />
+                <p className="phone-name">{phone.p_name}</p>
+                <p className="phone-price">{phone.price.toLocaleString()}원</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
-  
 }
-  
-  export default GeminiChat;
+
+export default GeminiChat;

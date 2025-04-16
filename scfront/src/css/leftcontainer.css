@@ -28,7 +28,7 @@
   }
   
   .title b {
-    color: #00b4aa;
+    color: #8B5FA1;
     font-weight: 700;
   }
   
@@ -50,10 +50,10 @@
   .searchList a {
     display: inline-block;
     padding: 10px 18px;
-    border: 1px solid #00b4aa;
+    border: 1px solid #D2B4DE;
     border-radius: 20px;
     background-color: #fff;
-    color: #00b4aa;
+    color: #D2B4DE;
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
@@ -61,7 +61,7 @@
   }
   
   .searchList a:hover {
-    background-color: #00b4aa;
+    background-color: #D2B4DE;
     color: #fff;
   }
   
