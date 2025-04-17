@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/requestpage.css';
 
-const RequestPage = () => {
+const RequestPage = ({ openLoginSidePage }) => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
 
   useEffect(() => {
     axios.post('http://localhost:8083/controller/api/request/list')
@@ -19,6 +21,16 @@ const RequestPage = () => {
   const indexFirst = indexLast - postsPerPage;
   const currentPosts = posts.slice(indexFirst, indexLast);
   const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  const goWrite = () =>{
+    if (!userInfo) {
+      alert("로그인 후 이용해주세요.");
+      openLoginSidePage(); // ✅ 사이드 로그인 창 열기
+      return;
+    }
+    navigate('/request_write')
+  }
+
 
   return (
     <div className='subMains'>
@@ -62,7 +74,7 @@ const RequestPage = () => {
         ))}
       </div>
 
-      <button className="requestWrite-btn" onClick={() => navigate('/request_write')}>글쓰기</button>
+      <button className="requestWrite-btn" onClick={goWrite}>글쓰기</button>
     </div>
   );
 };

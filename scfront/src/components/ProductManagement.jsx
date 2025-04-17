@@ -78,9 +78,9 @@ const ProductManagementPage = () => {
           <span>전체선택</span>
         </div>
         <div className="management-header-buttons">
-          <button className="delete-btn" onClick={handleDeleteSelected}>
+          {/* <button className="delete-btn" onClick={handleDeleteSelected}>
             선택상품 삭제
-          </button>
+          </button> */}
           <button className="add-btn" onClick={() => nav("/ProductAdd")}>
             제품 추가
           </button>
@@ -105,12 +105,12 @@ const ProductManagementPage = () => {
             <div className="product-price">{product.price.toLocaleString()}원</div>
           </div>
           <div className="product-actions">
-            <button 
+            {/* <button 
               className="edit-btn" 
               onClick={() => handleEditProduct(product.p_idx)}
             >
               수정
-            </button>
+            </button> */}
           </div>
         </div>
       ))}

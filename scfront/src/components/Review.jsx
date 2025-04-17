@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // ✅ 서버 요청용
 import '../css/review.css';
 
-const Review = () => {
+const Review = ({ openLoginSidePage }) => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
 
@@ -21,6 +21,15 @@ const Review = () => {
   const indexFirst = indexLast - postsPerPage;
   const currentPosts = posts.slice(indexFirst, indexLast);
   const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  const goWrite = () =>{
+    if (!userInfo) {
+      alert("로그인 후 이용해주세요.");
+      openLoginSidePage(); // ✅ 사이드 로그인 창 열기
+      return;
+    }
+    navigate('/review_write')
+  }
 
   return (
     <div className="subMains">
@@ -67,7 +76,7 @@ const Review = () => {
         </div>
 
         <div>
-          <button className="reviewWrite-btn" onClick={() => navigate('/review_write')}>
+          <button className="reviewWrite-btn" onClick={goWrite}>
             글쓰기
           </button>
         </div>

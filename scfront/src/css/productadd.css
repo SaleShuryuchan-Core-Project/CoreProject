@@ -1,100 +1,150 @@
-/* 제품 추가 페이지의 전체 컨테이너 스타일 */
+/* ✅ 전체 컨테이너 */
 .productadd-management-wrapper {
-    background: #fff;
-    width: 100%;              /* 너비 100%로 설정 */
-    max-width: 100%;          /* max-width도 100%로 설정 */
-    margin: 0 auto;           /* 가운데 정렬 유지 */
-    padding: 40px;
-    border-radius: 0;         /* radius 제거해 꽉찬 느낌 강조 */
-    box-shadow: none;         /* 그림자 제거로 깔끔한 느낌 */
-    min-height: calc(100vh - 80px); /* 화면 세로 전체를 채우도록 높이 설정 */
-  }
-  
-  /* 페이지 타이틀 */
+  background: linear-gradient(to bottom right, #f3e9ff, #e6e1f7);
+  width: 100%;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* ✅ 타이틀 */
+.addmanagement-title {
+  font-size: 2.5rem;
+  color: #6a1b9a;
+  font-weight: 800;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* ✅ 폼 영역 */
+.add-product-form {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(150, 100, 250, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 700px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ✅ 그룹 스타일 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #5e3c8c;
+}
+
+/* ✅ 입력 필드 */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="file"],
+.form-group textarea,
+.form-group select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #d3c4f5;
+  border-radius: 12px;
+  transition: all 0.3s;
+  background-color: #f9f7fe;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #a88efc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(168, 142, 252, 0.2);
+}
+
+/* ✅ 텍스트박스 */
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* ✅ 드롭다운 묶음 */
+.select-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.select-row select {
+  flex: 1;
+  min-width: 130px;
+  background-color: #f3efff;
+}
+
+/* ✅ 이미지 목록 선택 */
+.image-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.image-selection img {
+  border-radius: 10px;
+  transition: 0.3s;
+  border: 2px solid #ddd;
+}
+
+.image-selection img:hover {
+  transform: scale(1.03);
+  opacity: 0.92;
+  border-color: #b89bff;
+}
+
+/* ✅ 등록 버튼 */
+.productadd-btn {
+  background-color: #b78cff;
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  letter-spacing: 0.5px;
+}
+
+.productadd-btn:hover {
+  background-color: #9f6efb;
+}
+
+/* ✅ 반응형 디자인 */
+@media (max-width: 768px) {
   .addmanagement-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #222;
-    margin-bottom: 30px;
-    font-weight: 700;
+    font-size: 2rem;
   }
-  
-  /* 폼 레이아웃 및 입력 그룹 스타일 */
+
   .add-product-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 600px; /* 폼 너비는 너무 길지 않도록 제한 */
-    margin: 0 auto; /* 폼 중앙 정렬 */
+    padding: 20px;
   }
-  
-  .form-group {
-    display: flex;
+
+  .select-row {
     flex-direction: column;
   }
-  
-  .form-group label {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: #555;
-  }
-  
-  /* 입력 필드 스타일 (텍스트, 숫자, 날짜, 파일, 텍스트영역) */
-  .form-group input[type="text"],
-  .form-group input[type="number"],
-  .form-group input[type="date"],
-  .form-group input[type="file"],
-  .form-group textarea {
-    padding: 12px;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    transition: border 0.3s ease;
-  }
-  
-  .form-group input[type="text"]:focus,
-  .form-group input[type="number"]:focus,
-  .form-group input[type="date"]:focus,
-  .form-group textarea:focus {
-    border-color: #86b7fe;
-    outline: none;
-  }
-  
-  /* 텍스트 에어리어는 최소 높이를 부여해서 여유로운 입력 공간 제공 */
-  .form-group textarea {
-    min-height: 200px;
-  }
-  
-  .productadd-btn {
-    margin-top: 20px;
-    padding: 15px;
-    font-size: 1.2rem;
-    background-color: #ff6b6b;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .productadd-btn:hover {
-    background-color: #ff5252;
-  }
-  
-  /* 반응형 디자인 */
-  @media (max-width: 1000px) {
-    .productadd-management-wrapper {
-      padding: 20px;
-    }
-    .addmanagement-title {
-      font-size: 2rem;
-    }
-    .productadd-btn {
-      font-size: 1rem;
-      padding: 12px;
-    }
-  }
-  
+}
+
+/* ✅ 부드러운 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

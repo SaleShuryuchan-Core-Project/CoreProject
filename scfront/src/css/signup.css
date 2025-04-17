@@ -1,14 +1,15 @@
+/* 회원가입 폼 컨테이너 */
 .signUp-container {
-  background-color: #fff;
+  background: linear-gradient(135deg, #f4f0ff, #e9f3ff); /* 연보라-연하늘 그라데이션 */
   border-radius: 20px;
-  padding: 30px 20px;
+  padding: 30px 24px;
   width: 360px;
   margin: 60px auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 이메일 상태 메시지 */
 .email-status {
   margin-top: 4px;
   margin-left: 4px;
@@ -17,18 +18,21 @@
 .email-msg {
   font-size: 13px;
   color: green;
-  white-space: normal;
   display: block;
+  white-space: normal;
 }
+
+/* 비밀번호 입력 + 눈 아이콘 정렬 */
 .password-wrap {
   position: relative;
 }
 
 .password-wrap .form-input {
   width: 100%;
-  padding-right: 40px; /* 눈 아이콘 공간 확보 */
+  padding-right: 40px;
 }
 
+/* 눈 아이콘 */
 .eye-icon {
   position: absolute;
   right: 12px;
@@ -36,42 +40,43 @@
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 18px;
-  color: #555;
+  color: #666;
 }
 
-
-/* form 한 줄 */
+/* 한 줄 구성 */
 .form-group {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
-/* input 스타일 */
+/* 입력 필드 공통 */
 .form-input,
 .form-input-name,
 .form-input-post {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
   font-size: 14px;
-  outline: none;
-  transition: border 0.2s ease;
+  transition: all 0.25s ease;
   box-sizing: border-box;
+  background-color: #ffffff;
 }
 
+/* 입력 필드 포커스 시: 연보라 강조 */
 .form-input:focus,
-.form-input-post:focus,
-.form-input-name:focus {
-  border-color: #a3cdfd;
+.form-input-name:focus,
+.form-input-post:focus {
+  border-color: #b59af8 !important;
+  box-shadow: 0 0 0 3px rgba(181, 154, 248, 0.2) !important;
+  outline: none !important;
 }
 
-/* 버튼 */
+/* 일반 버튼 */
 .button,
 .icon-button {
-  white-space: nowrap; /* 줄바꿈 방지 */
   background-color: #e0e0e0;
   color: #333;
   border: none;
@@ -79,37 +84,49 @@
   padding: 8px 10px;
   font-size: 13px;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color 0.2s ease;
 }
 
 .button:hover,
 .icon-button:hover {
-  background-color: #d0d0d0;
+  background-color: #c5c5c5;
 }
 
-/* 가입 버튼 */
+/* 가입 버튼 (연보라) */
 .submit-button {
-  background-color: #a1bdf1;
+  background-color: #a78bfa;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 12px;
   padding: 12px;
   width: 100%;
-  margin-top: 18px;
+  margin-top: 20px;
   font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #7ea6de;
+  background-color: #8b6efb;
 }
 
+/* 인증 성공 텍스트 */
+.auth-success-msg {
+  font-size: 13px;
+  color: #4caf50;
+}
+
+/* 인증 전 메시지 */
+.auth-loading-msg {
+  font-size: 13px;
+  color: #888;
+}
+
+/* 아이디/닉네임 중복 확인 input wrapper */
 .input-id-wrap {
   position: relative;
   width: 95%;
   margin-bottom: 16px;
 }
-
-

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { marked } from 'marked';
+import '../css/future.css';
 
 const Future = ({ modelName, capacity, color, 기변상태 }) => {
   const [yearsLater, setYearsLater] = useState('');
@@ -10,7 +11,6 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
   const [currentHTML, setCurrentHTML] = useState('');
   const [futureHTML, setFutureHTML] = useState('');
 
-  // 🔧 기본 조건 세팅 (메모이제이션으로 최적화)
   const detail = useMemo(() => ({
     상태: '중',
     구성품: '풀패키징',
@@ -26,10 +26,8 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
 
   const fullModelName = `${modelName} ${capacity} ${color}`;
 
-  // 🔍 현재 시세 분석 요청
   const handleCurrentPrice = useCallback(async () => {
-    const prompt = `
-다음 조건을 가진 중고폰의 **2025년 기준 현재 예상 시세**를 아래 형식으로 작성해줘.
+    const prompt = `다음 조건을 가진 중고폰의 **2025년 기준 현재 예상 시세**를 아래 형식으로 작성해줘.
 
 [1] 시세에 영향을 주는 항목을 마크다운 표로 정리 (항목 | 영향 | 상승/하락 요인 설명)
 [2] 구체적인 요약 문단을 포함해줘.
@@ -42,8 +40,7 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
 - 구성품: ${detail.구성품}
 - 기변상태: ${detail.기변}
 - 선택약정: ${detail.약정}
-- 보증기간: ${detail.보증}
-    `;
+- 보증기간: ${detail.보증}`;
 
     const params = new URLSearchParams();
     params.append("question", prompt);
@@ -57,10 +54,8 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
     setCurrentHTML(marked.parse(text));
   }, [fullModelName, detail]);
 
-  //  향후 시세 분석 요청
   const handleFuturePrice = async () => {
-    const prompt = `
-이 중고폰을 현재 기준으로 ${yearsLater}년(예: 2025년 → ${2025 + yearsLater}년) 뒤에 되팔 경우 예상되는 시세를 분석해줘.
+    const prompt = `이 중고폰을 현재 기준으로 ${yearsLater}년 뒤에 되팔 경우 예상되는 시세를 분석해줘.
 
 [1] 각 항목이 시세에 미치는 영향과 함께 마크다운 표로 정리해줘 (항목 | 영향 | 상승/하락 요인 설명)
 [2] 분석 요약을 구체적이고 간결하게 문단으로 정리해줘.
@@ -73,8 +68,7 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
 - 구성품: ${detail.구성품}
 - 기변상태: ${detail.기변}
 - 선택약정: ${detail.약정}
-- 보증기간: ${detail.보증}
-    `;
+- 보증기간: ${detail.보증}`;
 
     const params = new URLSearchParams();
     params.append("question", prompt);
@@ -96,44 +90,45 @@ const Future = ({ modelName, capacity, color, 기변상태 }) => {
   }, [modelName, capacity, color, 기변상태, handleCurrentPrice]);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>📱 현재 중고 시세 분석</h2>
+    <div className="future-wrapper">
+      <h2 className="future-title">📱 현재 중고 시세 분석</h2>
       {parsedCurrentPrice && (
-        <div style={{ marginTop: 10, fontSize: '1.1rem' }}>
-          o(*￣▽￣*)ブ 현재 예상 중고가는 <strong style={{ color: '#007acc' }}>{parsedCurrentPrice}원</strong>입니다.
+        <div className="future-result">
+          o(*￣▽￣*)ブ 현재 예상 중고가는 <strong>{parsedCurrentPrice}원</strong>입니다.
         </div>
       )}
 
-      <hr style={{ margin: '30px 0' }} />
+      <hr className="future-divider" />
 
-      <h2>🕒 향후 시세 예측</h2>
-      <input
-        type="number"
-        placeholder="몇 년 뒤?"
-        value={yearsLater}
-        onChange={(e) => setYearsLater(e.target.value)}
-        style={{ marginRight: 10 }}
-      />
-      <button onClick={handleFuturePrice} disabled={!yearsLater}>예상 시세 예측</button>
+      <h2 className="future-title">🕒 향후 시세 예측</h2>
+      <div className="future-input-row">
+        <input
+          type="number"
+          placeholder="몇 년 뒤?"
+          value={yearsLater}
+          onChange={(e) => setYearsLater(e.target.value)}
+        />
+        <button onClick={handleFuturePrice} disabled={!yearsLater}>예상 시세 예측</button>
+      </div>
 
       {parsedFuturePrice && (
-        <div style={{ marginTop: 10, fontSize: '1.1rem' }}>
-          📉 {yearsLater}년 뒤 예상 시세는 <strong style={{ color: 'crimson' }}>{parsedFuturePrice}원</strong>입니다.
+        <div className="future-result future">
+          📉 {yearsLater}년 뒤 예상 시세는 <strong>{parsedFuturePrice}원</strong>입니다.
         </div>
       )}
 
       {parsedFuturePrice && (
-        <button onClick={() => setShowDetail(!showDetail)} style={{ marginTop: 10 }}>
+        <button className="future-toggle-btn" onClick={() => setShowDetail(!showDetail)}>
           {showDetail ? '🔼 상세 내용 닫기' : '🔽 상세 분석 보기'}
         </button>
       )}
 
       {showDetail && (
-        <div style={{ marginTop: 20 }}>
+        <div className="future-analysis-wrapper">
           <h3>📊 현재 시세 분석 내용</h3>
-          <div dangerouslySetInnerHTML={{ __html: currentHTML }} />
+          <div className="markdown-output" dangerouslySetInnerHTML={{ __html: currentHTML }} />
           <h3>📈 향후 시세 분석 내용</h3>
-          <div dangerouslySetInnerHTML={{ __html: futureHTML }} />
+          <div className="markdown-output" dangerouslySetInnerHTML={{ __html: futureHTML }} />
         </div>
       )}
     </div>

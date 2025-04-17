@@ -1,178 +1,22 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// import "../css/productadd.css";
-
-// const AddProductPage = () => {
-//   const nav = useNavigate();
-
-
-//   // public/img 폴더 내 이미지 파일 목록 (배열로 관리)
-//   const imgList = [
-//     "폰1.jpg",
-//     "폰2.jpg",
-//     "폰3.jpg",
-//     "apple.png",
-//     "kakao.png",
-//     "lg.png",
-//   ];
-
-//   // 선택된 이미지 상태
-//   const [selectedImgs, setSelectedImgs] = useState({
-//     p_img1: "",
-//     p_img2: "",
-//     p_img3: "",
-//   });
-
-//   // 이미지 선택 함수
-//   const handleImageSelect = (img, index) => {
-//     if (index === 1) {
-//       setSelectedImgs((prev) => ({
-//         ...prev,
-//         p_img1: img,
-//       }));
-//     } else if (index === 2) {
-//       setSelectedImgs((prev) => ({
-//         ...prev,
-//         p_img2: img,
-//       }));
-//     } else if (index === 3) {
-//       setSelectedImgs((prev) => ({
-//         ...prev,
-//         p_img3: img,
-//       }));
-//     }
-//   };
-
-//   const [info, setInfo] = useState({
-//     p_name: "",
-//     price: "",
-//     p_status: "",
-//     p_ownership: "",
-//     p_img1: "",  // 이미지 경로만 저장
-//     p_img2: "",
-//     p_img3: "",
-//   });
-
-//   // input 값 변경 시 호출
-//   const handleChange = (e) => { // 회원가입 입력시 저장하는 함수
-//     setInfo({
-//       ...info,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = () => {
-//     const productData = {
-//       p_name: info.p_name,
-//       price: info.price,
-//       p_status: info.p_status,
-//       p_ownership: info.p_ownership,
-//       p_img1: selectedImgs.p_img1, // 경로만 저장
-//       p_img2: selectedImgs.p_img2,
-//       p_img3: selectedImgs.p_img3,
-//     };
-
-//     axios
-// .post("http://localhost:8083/api/product/add", productData)
-//       .then((res) => {
-//         alert("제품이 등록되었습니다!");
-//         nav("/ProductManagement");
-//       })
-//       .catch((err) => {
-//         console.error("전송 에러:", err);
-//         alert("등록 중 오류 발생!");
-//       });
-//   };
-
-//   return (
-//     <div className="productadd-management-wrapper">
-//       <h2 className="addmanagement-title">제품 추가</h2>
-//       <div className="add-product-form">
-//         <div className="form-group">
-//           <label>제품명:</label>
-//           <input
-//             type="text"
-//             name="p_name"
-//             onChange={handleChange}
-//             value={info.p_name}
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label>가격:</label>
-//           <input
-//             type="number"
-//             name="price"
-//             onChange={handleChange}
-//             value={info.price}
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label>제품 상태:</label>
-//           <textarea
-//             name="p_status"
-//             onChange={handleChange}
-//             value={info.p_status}
-//           />
-//         </div>
-
-//         <div className="form-group">
-//           <label>제품 이미지 선택 (최대 3개):</label>
-//           <div className="image-selection">
-//             {imgList.map((img, idx) => (
-//               <div key={idx} className="image-item" style={{ display: "inline-block", margin: "10px" }}>
-//                 <img
-//                   src={`/img/${img}`} // public/img 폴더 내 이미지 참조
-//                   alt={img}
-//                   width="100"
-//                   style={{
-//                     cursor: "pointer",
-//                     border: selectedImgs.p_img1 === img || selectedImgs.p_img2 === img || selectedImgs.p_img3 === img
-//                       ? "3px solid blue"
-//                       : "none", // 선택된 이미지는 파란 테두리
-//                   }}
-//                   onClick={() => handleImageSelect(img, idx + 1)} // 선택된 이미지 번호 전달
-//                 />
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-
-//         <div className="form-group">
-//           <label>보유 상태:</label>
-//           <input
-//             type="number"
-//             name="p_ownership"
-//             onChange={handleChange}
-//             value={info.p_ownership}
-//           />
-//         </div>
-
-//         <button type="submit" className="productadd-btn" onClick={handleSubmit}>
-//           추가하기
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddProductPage;
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Papa from "papaparse";
 import { useNavigate } from "react-router-dom";
 import "../css/productadd.css";
 
 const AddProductPage = () => {
   const nav = useNavigate();
 
-  const imgList = [
-    "폰1.jpg",
-    "폰2.jpg",
-    "폰3.jpg",
-    "apple.png",
-    "kakao.png",
-    "lg.png",
-  ];
+  const [rawData, setRawData] = useState([]);
+  const [selectedManufacturer, setSelectedManufacturer] = useState(null);
+  const [selectedSeries, setSelectedSeries] = useState(null);
+  const [selectedModel, setSelectedModel] = useState(null);
+  const [selectedVolume, setSelectedVolume] = useState(null);
+  const [selectedColor, setSelectedColor] = useState("");
+
+  const [seriesList, setSeriesList] = useState([]);
+  const [modelList, setModelList] = useState([]);
+  const [volumeList, setVolumeList] = useState([]);
 
   const [info, setInfo] = useState({
     p_name: "",
@@ -182,16 +26,25 @@ const AddProductPage = () => {
     p_img1: "",
     p_img2: "",
     p_img3: "",
+    color: "",
   });
 
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState(["", "", ""]);
   const [uploading, setUploading] = useState(false);
-  const [uploadedList, setUploadedList] = useState([]);
 
-  const uploadToImgbb = async (file) => {
+  useEffect(() => {
+    Papa.parse("/data/phone.csv", {
+      download: true,
+      header: true,
+      complete: (results) => {
+        setRawData(results.data);
+      },
+    });
+  }, []);
+
+  const uploadToImgbb = async (file, imageIndex) => {
     const formData = new FormData();
     formData.append("image", file);
-
     try {
       setUploading(true);
       const res = await axios.post(
@@ -199,8 +52,19 @@ const AddProductPage = () => {
         formData
       );
       const url = res.data.data.url;
-      setInfo((prev) => ({ ...prev, p_img1: url }));
-      setPreview(url);
+
+      setInfo((prev) => {
+        const newInfo = { ...prev };
+        newInfo[`p_img${imageIndex + 1}`] = url; // p_img1, p_img2, p_img3
+        return newInfo;
+      });
+
+      setPreview((prev) => {
+        const newPreview = [...prev];
+        newPreview[imageIndex] = url;
+        return newPreview;
+      });
+
       setUploading(false);
     } catch (error) {
       console.error("이미지 업로드 실패:", error);
@@ -209,32 +73,68 @@ const AddProductPage = () => {
     }
   };
 
-  const handleFileChange = async (e) => {
+  const handleFileChange = async (e, index) => {
     const file = e.target.files[0];
-    if (file) {
-      await uploadToImgbb(file);
-    }
+    if (file) await uploadToImgbb(file, index);
   };
 
-  const handleImageSelect = (img, index) => {
-    if (index === 1) setInfo((prev) => ({ ...prev, p_img1: `/img/${img}` }));
-    if (index === 2) setInfo((prev) => ({ ...prev, p_img2: `/img/${img}` }));
-    if (index === 3) setInfo((prev) => ({ ...prev, p_img3: `/img/${img}` }));
+  const handleManufacturerChange = (e) => {
+    const manufacturer = e.target.value;
+    setSelectedManufacturer(manufacturer);
+    setSelectedSeries(null);
+    setSelectedModel(null);
+    setSelectedVolume(null);
+    setSelectedColor("");
+    const filtered = rawData
+      .filter((item) => item.제조사 === manufacturer)
+      .map((item) => item.시리즈)
+      .filter((v, i, self) => self.indexOf(v) === i);
+    setSeriesList(filtered);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInfo((prev) => ({ ...prev, [name]: value }));
+  const handleSeriesChange = (e) => {
+    const series = e.target.value;
+    setSelectedSeries(series);
+    setSelectedModel(null);
+    setSelectedVolume(null);
+    setSelectedColor("");
+    const filtered = rawData
+      .filter(
+        (item) => item.제조사 === selectedManufacturer && item.시리즈 === series
+      )
+      .map((item) => item.모델)
+      .filter((v, i, self) => self.indexOf(v) === i);
+    setModelList(filtered);
+  };
+
+  const handleModelChange = (e) => {
+    const model = e.target.value;
+    setSelectedModel(model);
+    setSelectedVolume(null);
+    setSelectedColor("");
+    const filtered = rawData
+      .filter(
+        (item) =>
+          item.제조사 === selectedManufacturer &&
+          item.시리즈 === selectedSeries &&
+          item.모델 === model
+      )
+      .map((item) => item.용량)
+      .filter((v, i, self) => self.indexOf(v) === i);
+    setVolumeList(filtered);
   };
 
   const handleSubmit = async () => {
-    if (uploading) {
-      alert("이미지 업로드 중입니다. 잠시만 기다려주세요.");
+    if (!selectedModel || !selectedVolume || !info.price || !info.p_status) {
+      alert("모든 항목을 입력해주세요.");
       return;
     }
-    console.log(info);
+
+    const fullName = `${selectedManufacturer} ${selectedModel} ${selectedVolume}`;
+    const sendData = { ...info, p_name: fullName };
+
     try {
-      await axios.post("http://localhost:8083/controller/add", info);
+      await axios.post("http://localhost:8083/controller/add", sendData);
       alert("제품이 등록되었습니다!");
       nav("/ProductManagement");
     } catch (err) {
@@ -247,53 +147,122 @@ const AddProductPage = () => {
     <div className="productadd-management-wrapper">
       <h2 className="addmanagement-title">제품 추가</h2>
       <div className="add-product-form">
+        {/* ✅ 제품 선택 먼저 표시 */}
         <div className="form-group">
-          <label>제품명:</label>
-          <input type="text" name="p_name" onChange={handleChange} value={info.p_name} />
+          <label>제품 선택:</label>
+          <div className="select-row">
+            <select
+              value={selectedManufacturer || ""}
+              onChange={handleManufacturerChange}
+            >
+              <option value="">제조사 선택</option>
+              <option value="삼성전자">삼성전자</option>
+              <option value="애플">애플</option>
+              <option value="LG전자">LG전자</option>
+            </select>
+            <select
+              value={selectedSeries || ""}
+              onChange={handleSeriesChange}
+              disabled={!selectedManufacturer}
+            >
+              <option value="">시리즈 선택</option>
+              {seriesList.map((v, i) => (
+                <option key={i} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+            <select
+              value={selectedModel || ""}
+              onChange={handleModelChange}
+              disabled={!selectedSeries}
+            >
+              <option value="">모델 선택</option>
+              {modelList.map((v, i) => (
+                <option key={i} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+            <select
+              value={selectedVolume || ""}
+              onChange={(e) => setSelectedVolume(e.target.value)}
+              disabled={!selectedModel}
+            >
+              <option value="">용량 선택</option>
+              {volumeList.map((v, i) => (
+                <option key={i} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </div>
+          <input
+            type="text"
+            onChange={(e) => setInfo({ ...info, color: e.target.value })}
+            placeholder="색상 입력"
+          />
         </div>
+
+        {/* 가격 */}
         <div className="form-group">
           <label>가격:</label>
-          <input type="number" name="price" onChange={handleChange} value={info.price} />
+          <input
+            type="number"
+            name="price"
+            onChange={(e) => setInfo({ ...info, price: e.target.value })}
+          />
         </div>
+
+        {/* 제품 상태 */}
         <div className="form-group">
           <label>제품 상태:</label>
-          <textarea name="p_status" onChange={handleChange} value={info.p_status} />
+          <textarea
+            name="p_status"
+            onChange={(e) => setInfo({ ...info, p_status: e.target.value })}
+          />
         </div>
+
+        {/* 직접 업로드 */}
         <div className="form-group">
-          <label>제품 이미지 선택 (최대 3개):</label>
-          <div className="image-selection">
-            {imgList.map((img, idx) => (
-              <div key={idx} className="image-item" style={{ display: "inline-block", margin: "10px" }}>
-                <img
-                  src={`/img/${img}`}
-                  alt={img}
-                  width="100"
-                  style={{
-                    cursor: "pointer",
-                    border:
-                      info.p_img1 === `/img/${img}` ||
-                      info.p_img2 === `/img/${img}` ||
-                      info.p_img3 === `/img/${img}`
-                        ? "3px solid blue"
-                        : "none",
-                  }}
-                  onClick={() => handleImageSelect(img, idx + 1)}
-                />
-              </div>
-            ))}
-          </div>
+          <label>또는 직접 업로드:</label>
+          <input type="file" onChange={(e) => handleFileChange(e, 0)} />
+          <input type="file" onChange={(e) => handleFileChange(e, 1)} />
+          <input type="file" onChange={(e) => handleFileChange(e, 2)} />
+          {preview.map((url, idx) =>
+            url ? (
+              <img
+                key={idx}
+                src={url}
+                alt={`미리보기 ${idx + 1}`}
+                width="150"
+                style={{
+                  marginTop: "10px",
+                  borderRadius: "8px",
+                  marginRight: "10px",
+                }}
+              />
+            ) : null
+          )}
         </div>
-        <div className="form-group">
-          <label>또는 직접 이미지 업로드:</label>
-          <input type="file" onChange={handleFileChange} />
-          {preview && <img src={preview} alt="미리보기" width="150" style={{ marginTop: "10px", borderRadius: "8px" }} />}
-        </div>
+
+        {/* 보유 상태 */}
         <div className="form-group">
           <label>보유 상태:</label>
-          <input type="number" name="p_ownership" onChange={handleChange} value={info.p_ownership} />
+          <input
+            type="number"
+            name="p_ownership"
+            onChange={(e) => setInfo({ ...info, p_ownership: e.target.value })}
+            value={info.p_ownership}
+          />
         </div>
-        <button type="submit" className="productadd-btn" onClick={handleSubmit} disabled={uploading}>
-          {uploading ? "업로드 중..." : "추가하기"}
+
+        <button
+          className="productadd-btn"
+          onClick={handleSubmit}
+          disabled={uploading}
+        >
+          {uploading ? "업로드 중..." : "제품 추가"}
         </button>
       </div>
     </div>

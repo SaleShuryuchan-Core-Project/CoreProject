@@ -134,7 +134,7 @@ const PaymentPage = () => {
       <h2 className="payment-title">주문 / 결제</h2>
       {selectedItems.map(item => (
         <div className="product-box" key={item.p_idx}>
-          <img src={`http://localhost:8083${item.p_img1}`} alt="상품 이미지" className="product-img" />
+          <img src={item.p_img1} alt={item.p_name} className="product-img" />
           <div className="product-info">
             <div className="product-name">{item.p_name}</div>
             <div className="product-color">상품번호: {item.p_idx}</div>

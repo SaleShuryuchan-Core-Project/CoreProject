@@ -1,90 +1,117 @@
+/* 전체 페이지 배경 및 정렬 */
 .reviewContainer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 80px 20px;
-  background: #f0f2f5;
+  background: linear-gradient(180deg, #f3eaff 0%, #fff6fb 100%);
   min-height: 100vh;
-  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 카드 영역 */
 .reviewCard {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 50px;
-  max-width: 850px;
+  max-width: 860px;
   width: 100%;
+  border: 1px solid #e3dcff;
+  box-shadow: 0 12px 32px rgba(173, 142, 255, 0.15);
   animation: fadeInUp 0.5s ease;
 }
 
+/* 등장 애니메이션 */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* 제목 */
 .reviewTitle {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
+  color: #333;
   margin-bottom: 12px;
-  color: #212121;
 }
 
+/* 작성자, 날짜 정보 */
 .reviewMeta {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
   gap: 20px;
-  font-size: 16px;
+  font-size: 14px;
   color: #888;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .reviewMeta svg {
-  margin-right: 6px;
+  margin-right: 5px;
   vertical-align: middle;
 }
 
-.reviewContent {
-  font-size: 17px;
-  line-height: 1.9;
-  color: #333;
-  white-space: pre-wrap;
-  padding: 20px 0;
-  border-top: 1px solid #ddd;
+/* 별점 */
+.reviewStars {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 20px;
 }
 
+.reviewStars .star {
+  margin-right: 4px;
+}
+
+.reviewStars .filled {
+  color: #f5b301;
+}
+
+/* 본문 내용 */
+.reviewContent {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  white-space: pre-wrap;
+  padding: 20px 0 10px;
+  border-top: 1px solid #eee;
+}
+
+/* 이미지 */
+.reviewCard img {
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+}
+
+/* 버튼 wrapper */
 .buttonWrapper {
   text-align: right;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
+/* 목록으로 돌아가기 버튼 */
 .backBtn {
-  padding: 12px 28px;
-  font-size: 14px;
-  background: #4f7fff;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #bda4ff;
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.25s ease;
 }
 
 .backBtn:hover {
-  background: #385dc7;
+  background-color: #a78fe2;
 }
 
 .backBtn:active {
-  background: #2b48a1;
-}
-
-.reviewStars {
-  margin-bottom: 16px;
-  font-size: 22px;
-  color: #ccc;
-}
-
-.reviewStars .star.filled {
-  color: #f5b301;
+  background-color: #8b72cc;
 }

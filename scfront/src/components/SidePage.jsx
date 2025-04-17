@@ -239,83 +239,106 @@ const SidePage = () => {
 
   };
 
-  const handleLogout = () => { // 로그아웃 
-    // 로그인 성공한게 카카오인지 일반인지 확인
-    if (loginType === "kakao" && window.Kakao && window.Kakao.API) { // 카카오톡 로그아웃
-
-      // 카카오톡 자동로그인 방지해주는 문구..  로그아웃 팝업창을 이용해 강제로 로그아웃
-      const popup = window.open("", "kakaoLogout", "width=360,height=240,left=600,top=300");
-      if (!popup) {
-        alert("팝업이 차단되었습니다. 브라우저 팝업 설정을 확인해주세요.");
-        return;
-      }
-      popup.document.write(`
-    <html>
-      <head>
-        <title>로그아웃 중</title>
-        <style>
-          body {
-            font-family: 'Noto Sans KR', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #fffbe7;
-            color: #333;
-          }
-          img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 16px;
-          }
-          .message {
-            font-size: 16px;
-            font-weight: 500;
-          }
-          iframe {
-            display: none;
-          }
-        </style>
-      </head>
-      <body>
-        <img src="${logoutImg}" alt="로그아웃 중" />
-        <div class="message">카카오에서 안전하게<br>로그아웃 중이에요 🍯🐝</div>
-        <iframe src="https://accounts.kakao.com/logout?continue=https://kauth.kakao.com/oauth/logout"></iframe>
-      </body>
-    </html>
-  `);
-
-      // 팝업 닫기 (2초 후)
-      setTimeout(() => {
-        try {
-          popup.close();
-        } catch (e) {
-          console.warn("팝업 닫기 실패:", e);
+  const handleLogout = () => { 
+    if (loginType === "kakao" && window.Kakao && window.Kakao.Auth) {
+      window.Kakao.Auth.logout(() => {
+        console.log("SDK 로그아웃 완료");
+  
+        // ✅ 백그라운드 로그아웃 팝업 (사용자 눈에 안 보이게 오른쪽 구석에 숨김)
+        const hiddenLogout = window.open(
+          "https://accounts.kakao.com/logout?continue=https://kauth.kakao.com/oauth/logout",
+          "_blank",
+          "width=420,height=320,left=600,top=300" // 👈 이게 핵심! 눈에 안 띔!
+        );
+  
+        // ✅ 사용자용 벌 그림 안내 팝업 (앞에 뜨게)
+        const popup = window.open(
+          "",
+          "kakaoPrettyLogout",
+          "width=420,height=320,left=600,top=300"
+        );
+  
+        if (!popup) {
+          alert("팝업이 차단되었습니다. 브라우저 설정을 확인해주세요.");
+          return;
         }
-      }, 2000);
-
-      // 카카오 관련 데이터 모두 삭제
-      window.Kakao.Auth.setAccessToken(undefined);
-      localStorage.removeItem("kakaoUser");
+  
+        popup.document.write(`
+          <html>
+            <head>
+              <title>로그아웃 중</title>
+              <style>
+                body {
+                  font-family: 'Noto Sans KR', sans-serif;
+                  background-color: #fffbe7;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  height: 100vh;
+                  margin: 0;
+                }
+                img {
+                  width: 90px;
+                  margin-bottom: 20px;
+                }
+                .text {
+                  font-size: 16px;
+                  text-align: center;
+                  color: #333;
+                  line-height: 1.5;
+                }
+                .small {
+                  font-size: 13px;
+                  margin-top: 12px;
+                  color: #777;
+                }
+              </style>
+            </head>
+            <body>
+              <img src="${logoutImg}" />
+              <div class="text">
+                카카오에서 안전하게 로그아웃 중입니다<br/>
+                창이 자동으로 닫힙니다 🍯🐝
+              </div>
+              <div class="small">※ 자동로그인 방지를 위해 추가 확인 절차가 실행됩니다</div>
+            </body>
+          </html>
+        `);
+  
+        // ✅ 상태 초기화
+        localStorage.removeItem("kakaoUser");
+        localStorage.removeItem("userInfo");
+        window.Kakao.Auth.setAccessToken(undefined);
+  
+        setUserInfo(null);
+        setIsLoggedIn(false);
+        setLoginType(null);
+        setNickname(null);
+  
+        // ✅ 팝업 닫기 + 리디렉션
+        setTimeout(() => {
+          try {
+            popup.close();
+            hiddenLogout.close();
+          } catch (e) {}
+  
+          setTimeout(() => {
+            alert("로그아웃 되었습니다!");
+            nav("/");
+          }, 100);
+        }, 2000);
+      });
+    } else {
       localStorage.removeItem("userInfo");
       setUserInfo(null);
       setIsLoggedIn(false);
       setLoginType(null);
       setNickname(null);
-
+  
       alert("로그아웃 되었습니다!");
-
-    } else { // 일반 로그아웃
-      localStorage.removeItem("userInfo"); // 저장된 로그인 정보 제거
-      setUserInfo(null);
-      setIsLoggedIn(false);
-      setLoginType(null);
-      setNickname(null);
-      alert("로그아웃 되었습니다!");
+      nav("/");
     }
-    nav("/");
   };
 
   const signupGo = () => { // 회원가입 들어가기
@@ -439,14 +462,68 @@ const SidePage = () => {
     setShowPrompt(true);
   };
 
-  const handlePromptConfirm = (value) => {
+  const handlePromptConfirm = async (value) => {
     if (promptType === "findId") {
-      alert(`입력한 이메일로 아이디를 찾습니다: ${value}`);
+      try {
+        // 이메일 유효성 검증 및 인증 메일 발송
+        const res = await axios.post("http://localhost:8083/controller/send-id-auth", {
+          email: value
+        });
+
+        if (res.data === true) {
+          const code = prompt("인증번호를 입력해주세요:");
+          const verifyRes = await axios.post("http://localhost:8083/controller/verify-id-auth", {
+            email: value,
+            code: code
+          });
+
+          if (verifyRes.data && verifyRes.data.userId) {
+            alert(`✅ 인증 성공!\n당신의 아이디는 [${verifyRes.data.userId}] 입니다.`);
+          } else {
+            alert("❌ 인증 실패 또는 아이디를 찾을 수 없습니다.");
+          }
+        } else {
+          alert("❌ 등록되지 않은 이메일입니다.");
+        }
+      } catch (error) {
+        alert("⚠️ 아이디 찾기 요청 중 오류 발생");
+        console.error(error);
+      }
+
     } else if (promptType === "findPw") {
-      alert(`입력한 아이디로 비밀번호 재설정 링크를 보냅니다: ${value}`);
+      try {
+        // 아이디 기반으로 이메일 받아오기 + 인증 시작
+        const email = prompt("가입 시 입력한 이메일을 입력해주세요:");
+        const res = await axios.post("http://localhost:8083/controller/send-pw-auth", {
+          id: value,
+          email: email
+        });
+
+        if (res.data === true) {
+          const code = prompt("인증번호를 입력해주세요:");
+          const verifyRes = await axios.post("http://localhost:8083/controller/verify-pw-auth", {
+            id: value,
+            email: email,
+            code: code
+          });
+
+          if (verifyRes.data && verifyRes.data.password) {
+            alert(`✅ 인증 성공!\n비밀번호는 [${verifyRes.data.password}] 입니다.`);
+          } else {
+            alert("❌ 인증 실패 또는 비밀번호를 찾을 수 없습니다.");
+          }
+        } else {
+          alert("❌ 입력한 아이디와 이메일이 일치하지 않습니다.");
+        }
+      } catch (error) {
+        alert("⚠️ 비밀번호 찾기 요청 중 오류 발생");
+        console.error(error);
+      }
     }
+
     setShowPrompt(false);
   };
+
 
   const handlePromptCancel = () => {
     setShowPrompt(false);
@@ -454,7 +531,7 @@ const SidePage = () => {
 
 
   return ( // 화면에 출력하는 곳
-    <div>
+    <div className="sidePageDesign">
       {signUp ? // 회원가입 
         (
           <div className="signUp-container">
@@ -586,7 +663,7 @@ const SidePage = () => {
               <div className="login-divider">
                 <div className="sns-login-buttons">
                   <button className="sns-btn" onClick={loginWithKakao}>
-                    <img src={KakaoIcon} alt="카카오 로그인" />
+                    <img src={KakaoIcon} alt="카카오 로그인"/>
                   </button>
                 </div>
               </div>
@@ -600,7 +677,7 @@ const SidePage = () => {
               <span className="signup-link" onClick={signupGo}>가입하기</span>
             </div>
           </div>
-        ) :userInfo && userInfo.u_id === "admin" ? (  // admin 전용 레이아웃
+        ) : userInfo && userInfo.u_id === "admin" ? (  // admin 전용 레이아웃
           <div className="login-success-box">
             <div className="welcome-message">
               <FaUserCircle size={32} className="user-icon" />
@@ -608,7 +685,7 @@ const SidePage = () => {
             </div>
             <div className="button-group">
               <button className="productManagement-btn" onClick={() => nav("/productManagement")}>보유제품관리</button>
-              <button className="deliveryManagement-btn" onClick={()=>nav("/orderDetails")}>배송관리</button>
+              <button className="deliveryManagement-btn" onClick={() => nav("/orderDetails")}>배송관리</button>
               <button className="logout-btn" onClick={handleLogout}>
                 <FaSignOutAlt /> 로그아웃
               </button>
@@ -637,11 +714,13 @@ const SidePage = () => {
           message={
             promptType === "findId"
               ? "가입한 이메일 주소를 입력해주세요"
-              : "가입한 아이디를 입력해주세요"
+              : "가입한 아이디와 이메일을 입력해주세요"
           }
-          onConfirm={handlePromptConfirm}
+          type={promptType} // 추가됨!
+          onConfirm={() => { }} // 필요 없어짐
           onCancel={handlePromptCancel}
         />
+
       )}
 
     </div>

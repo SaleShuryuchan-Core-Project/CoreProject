@@ -27,7 +27,7 @@ const MyPage = () => {
     address: jibun,
     detailAddress: detail,
   });
-  const [isEditable, setIsEditable] = useState(false);  // 기본은 읽기 전용
+  const [isEditable, setIsEditable] = useState(false);  // 수정 가능할지 안할지 
 
   const postcodeRef = useRef(null);
   const roadAddressRef = useRef(null);
@@ -43,7 +43,8 @@ const MyPage = () => {
   useEffect(() => { // 주문 내역 불러오기
     axios.post("http://localhost:8083/controller/mypageorder",
       { u_id: userInfo.u_id })
-      .then(res => {
+      .then((res) => {
+        console.log(res.data);
         if (res.data != "") {
           setOrder(res.data);
           setOrderInfo(true);
@@ -185,9 +186,11 @@ const MyPage = () => {
         console.error(err);
         alert("저장 중 오류가 발생했습니다.");
       });
+      setIsEditable(false);
   };
 
   const check = () => { // 중복 체크
+    if (!isEditable) return;
     axios.post("http://localhost:8083/controller/check", {
       nickname: formData.nickname
     })

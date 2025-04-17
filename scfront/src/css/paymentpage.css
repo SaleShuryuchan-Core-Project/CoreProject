@@ -3,7 +3,7 @@
   margin: 40px auto;
   padding: 30px;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   animation: fadeInUp 0.6s ease-in-out;
@@ -53,7 +53,7 @@
 .price {
   font-size: 26px;
   font-weight: bold;
-  color: #0040ff;
+  color: red; 
 }
 
 .price .won {
@@ -72,18 +72,25 @@
 }
 
 
-
-/* 기본 입력 필드 */
+/* 기본 입력 필드 (연보라 테마 적용됨) */
 input,
 textarea {
   width: 100%;
   padding: 14px;
   font-size: 15px;
-  border: none;
-  background-color: #f2f2f2;
+  border: 2px solid #d2c3f3;
+  background-color: #f9f5ff;
   border-radius: 10px;
   margin-bottom: 14px;
   box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+  outline: none;
 }
 
 textarea {
@@ -105,10 +112,10 @@ textarea {
 
 .inline-group span {
   font-size: 18px;
-  line-height: 48px;  /* input의 height에 맞춰서 정렬 */
+  line-height: 48px;
   vertical-align: middle;
   padding-bottom: 15px;
-} 
+}
 
 /* 라디오 버튼 */
 .radio-group {
@@ -129,16 +136,21 @@ textarea {
 
 /* 수령인 입력창 크기 */
 .receiver-input {
-  width: 200px !important;   /* 우편번호 input과 동일한 너비 */
-  flex: none !important;     /* 공통 flex 규칙 무효화 */
+  width: 200px !important;
+  flex: none !important;
   padding: 14px;
   font-size: 15px;
-  border: none;
-  background-color: #f2f2f2;
+  border: 2px solid #d2c3f3;
+  background-color: #f9f5ff;
   border-radius: 10px;
   box-sizing: border-box;
 }
 
+input.name-input,
+input.receiver-input {
+  width: 200px !important;
+  flex: none !important;
+}
 
 /* 🔥 우편번호 검색 행 */
 .zip-search-row {
@@ -151,14 +163,17 @@ textarea {
 .zip-search-row input.zipcode-input {
   width: 200px !important;
   flex: none !important;
+  border: 2px solid #d2c3f3;
+  background-color: #f9f5ff;
+  border-radius: 10px;
 }
 
 /* 검색 버튼 */
 .search-btn {
   width: 60px;
   height: 50px;
-  padding: 14px; /* input과 동일한 패딩 */
-  background-color: #98dfa1;
+  padding: 14px;
+  background-color: #c3b6ff;
   color: white;
   border: none;
   font-size: 16px;
@@ -167,13 +182,12 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;  /* hover 시간 */
+  transition: background 0.2s ease;
 }
 
-.search-btn:hover{
-  background-color: #adf5ad;
+.search-btn:hover {
+  background-color: #a78bfa;
 }
-
 
 /* 결제 버튼 */
 .pay-btn {
@@ -182,20 +196,14 @@ textarea {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #a4c9ec;
+  background-color: #a78bfa;
   border: none;
   border-radius: 8px;
-  margin-left:280px;
+  margin-left: 280px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .pay-btn:hover {
-  background-color: #333;
-}
-
-input.name-input,
-input.receiver-input {
-  width: 200px !important;
-  flex: none !important;
+  background-color: #7f52ec;
 }

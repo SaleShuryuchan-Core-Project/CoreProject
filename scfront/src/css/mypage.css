@@ -1,40 +1,23 @@
+/* 전체 마이페이지 컨테이너 */
 .mypage-container {
   background-color: #fff;
   min-height: 100vh;
   padding: 80px 20px;
   font-family: 'Noto Sans KR', sans-serif;
 }
+
 .table-label {
   font-size: 18px;
   font-weight: bold;
   margin: 20px 0 10px;
-  color: #333;
+  color: #4a148c;
 }
 
-.custom-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-}
-
-
-.custom-table th,
-.custom-table td {
-  border: 1px solid #ccc;
-  padding: 10px 12px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.custom-table th {
-  background-color: #e0f7fa;
-  color: #333;
-}
+/* 카드형 리스트 */
 .card-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
 }
 
 .card-row {
@@ -47,120 +30,29 @@
   background-color: #fff;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
 }
 
 .card-row:hover {
-  border: 2px solid #339af0; /* 진한 하늘색 강조 */
-  box-shadow: 0px 4px 14px rgba(51, 154, 240, 0.3); /* 은은한 그림자 */
-  background-color: #f0f8ff; /* 연한 블루 배경 */
+  border: 2px solid #ba68c8;
+  box-shadow: 0 6px 14px rgba(186, 104, 200, 0.25);
+  background-color: #fdf4ff;
 }
-.card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
-  border: 1.8px solid #ddd; /* ✅ 선명한 테두리 */
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.03); /* 부드러운 그림자 */
-  margin-bottom: 12px;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-.card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
-  border: 1.5px solid #d0d0d0; /* ✅ 명확한 테두리 */
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* 약간의 입체감 */
-  margin-bottom: 6px; /* ✅ 카드 간 거리 최소화 */
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-.card-title {
-  font-weight: 500;
-  font-size: 15px;
-  color: #222;
-  max-width: 60%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-date, .card-rating {
-  font-size: 14px;
-  color: #555;
-  white-space: nowrap;
-}
-
-.card-row:hover {
-  border: 1.8px solid #4a90e2; /* ✅ hover 시 강조 */
-  background-color: #f4faff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.card-row:hover {
-  border: 2px solid #4a90e2; /* ✅ hover 시 진한 테두리 강조 */
-  background-color: #f8fbff;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-}
-.card-title {
-  font-weight: 500;
-  font-size: 16px;
-  color: #222;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-date, .card-rating {
-  color: #666;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
 
 .card-title, .card-content {
   font-weight: 500;
   flex: 1;
-}
-
-.card-rating {
-  margin: 0 12px;
-  font-weight: bold;
-  color: #444;
-  white-space: nowrap;
-}
-
-.card-date {
-  color: #888;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-
-.order-header-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 24px;
   font-size: 15px;
-  font-weight: 700;
-  color: #444;
-  background: #e0f7f7;
-  border-radius: 10px 10px 0 0;
-  margin-top: 20px;
-  border: 1px solid #ccc;
+  color: #333;
 }
 
-.order-header-row span {
-  flex: 1;
-  text-align: center;
+.card-date, .card-rating {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
 }
 
+/* 테이블 */
 .order-table {
   width: 100%;
   border-collapse: collapse;
@@ -171,7 +63,7 @@
 }
 
 .order-table th {
-  background-color: #d3f1f3;
+  background-color: #ede7f6;
   padding: 12px;
   font-weight: bold;
   text-align: center;
@@ -185,36 +77,6 @@
   border-bottom: 1px solid #eee;
 }
 
-.order-table tr:last-child td {
-  border-bottom: none;
-}
-
-.order-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  padding: 16px 24px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  font-size: 15px;
-  font-weight: 500;
-  white-space: nowrap;
-  border: 1px solid #ddd;
-}
-
-.order-row span {
-  flex: 1;
-  text-align: center;
-  padding: 0 8px;
-  border-right: 1px solid #eee;
-}
-
-.order-row span:last-child {
-  border-right: none;
-}
-
 .mypage-main {
   max-width: 1100px;
   margin: 0 auto;
@@ -224,8 +86,7 @@
   align-items: flex-start;
 }
 
-/* 왼쪽 영역 */
-.mypage-left {
+.mypage-left, .mypage-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -233,98 +94,84 @@
 }
 
 .mypage-box {
-  background-color: #abdfe0;
+  background: linear-gradient(200deg, #fce3ec, #f3e3fa); 
   padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
 }
 
+.mypage-box h2 {
+  font-size: 20px;
+  color: #4a148c;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
 
 .mypage-box-leftcontent {
-  margin-top: 12px;
-  padding: 12px 16px;
-  background-color: white;
+  background-color: #fff;
+  padding: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #333;
-}
-
-
-/* 오른쪽 영역 */
-.mypage-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  border-radius: 10px;
 }
 
 .mypage-box-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
-.logout-text {
-  font-size: 14px;
-  color: #007bff;
+.logout-text, .change-password, .withdraw {
+  font-size: 13px;
+  color: #7c4dff;
   cursor: pointer;
+  transition: color 0.2s;
 }
 
-/* 입력폼 */
+.logout-text:hover, .change-password:hover, .withdraw:hover {
+  color: #5e35b1;
+  text-decoration: underline;
+}
+
 .mypage-form label {
   font-size: 14px;
-  margin: 8px 0 4px;
+  margin: 6px 0 4px;
   display: block;
+  font-weight: 500;
+  color: #333;
 }
 
 .mypage-form input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-radius: 8px;
   margin-bottom: 10px;
   font-size: 14px;
-  box-sizing: border-box;
+  transition: 0.2s;
+  background-color: #fefefe;
 }
 
-.zipcode-wrap {
-  display: flex;
-  gap: 10px;
+.mypage-form input:focus {
+  border-color: #ab47bc;
+  outline: none;
 }
 
-.search-btn {
-  padding: 8px 12px;
-  font-size: 13px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  background-color: white;
-  cursor: pointer;
-}
-
-/* 하단 링크 */
-.mypage-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 12px;
-  font-size: 14px;
-  color: #007bff;
-}
-
-/* 저장 버튼 */
-.save-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.save-btn {
-  padding: 12px 20px;
-  font-size: 14px;
-  background-color: #acb4e4;
+.search-btn, .save-btn {
+  background: linear-gradient(135deg, #a78bfa, #f0abfc);
+  color: #fff;
+  font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  padding: 10px 18px;
   cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.search-btn:hover, .save-btn:hover {
+  background: linear-gradient(135deg, #a78bfa, #f0abfc);
+  transform: scale(1.03);
 }
 
 .input-with-btn {
@@ -341,19 +188,26 @@
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-sizing: border-box;
 }
 
 .input-with-btn .search-btn {
   flex: 2;
   display: flex;
-  align-items: center;     /* ✅ 세로 중앙 정렬 */
-  justify-content: center; /* ✅ 가로 중앙 정렬 */
-  height: 42px;            /* ✅ input과 동일한 높이 */
+  justify-content: center;
+  align-items: center;
+  height: 42px;
   font-size: 14px;
   padding: 0 12px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 8px;
-  line-height: 1;          /* ✅ 글자 baseline 조정 */
+}
+
+.mypage-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.save-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }

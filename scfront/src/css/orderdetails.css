@@ -1,76 +1,81 @@
-/* 전체 감싸는 컨테이너 */
+/* 전체 컨테이너 */
 .order-details-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  /* 제목 스타일 */
-  .management-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #222;
-  }
-  
-  /* 각 주문 상세 항목을 감싸는 카드 박스 */
-  .order-item {
-    border: 1.5px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #fafafa;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .order-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* 주문 정보 텍스트 정렬 */
-  .order-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    line-height: 1.8;
-  }
-  
-  .order-info div {
-    flex: 1 1 45%;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  /* 주문 상태 드롭다운 스타일 */
-  .order-info select {
-    padding: 6px 12px;
-    font-size: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    transition: border-color 0.3s;
-  }
-  
-  .order-info select:focus {
-    outline: none;
-    border-color: #5e9cff;
-  }  
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #fef9ff, #f3e5f5);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  font-family: 'Noto Sans KR', sans-serif;
+}
 
-  .update-btn {
-    margin-left: 12px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .update-btn:hover {
-    background-color: #0056b3;
-  }  
+/* 제목 */
+.management-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  color: #6a1b9a;
+  margin-bottom: 36px;
+}
+
+/* 주문 상세 카드 */
+.order-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1.5px solid #e0d5ec;
+  box-shadow: 0 6px 14px rgba(106, 27, 154, 0.08);
+  transition: all 0.3s ease;
+}
+
+.order-item:hover {
+  box-shadow: 0 8px 20px rgba(106, 27, 154, 0.12);
+}
+
+/* 내용 정렬 */
+.order-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  line-height: 1.8;
+}
+
+.order-info div {
+  flex: 1 1 45%;
+  font-size: 15px;
+  color: #333;
+}
+
+/* 드롭다운 */
+.order-info select {
+  padding: 8px 14px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f7f3ff;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.order-info select:focus {
+  border-color: #a855f7;
+  outline: none;
+  box-shadow: 0 0 4px rgba(168, 85, 247, 0.3);
+}
+
+/* 버튼 */
+.update-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #a78bfa, #c084fc);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.update-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #d8b4fe);
+}

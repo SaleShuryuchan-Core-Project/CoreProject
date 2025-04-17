@@ -2,122 +2,103 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: #fcf9ff; /* 부드러운 연보라 배경 */
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
+.review-wrapper {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
 
-
- .reviewTable {
-  margin-bottom: 20px;
-  width: 1100px;
+/* 테이블 */
+.reviewTable {
+  width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  font-size: 15px;
+}
+
+.reviewTable th,
+.reviewTable td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.reviewHeader {
+  background-color: #e0d7fb; /* 연보라 헤더 */
+  color: #333;
+  font-weight: 600;
+}
+
+.reviewBody {
   background-color: #fff;
- }
+  transition: background-color 0.25s ease;
+}
 
- .reviewTable td,
- .reviewTable th {
-   border-bottom: 1px solid #ccc;
-   padding: 12px;
-   font-size: 15px;
-   text-align: center;
- }
+.reviewBody:hover {
+  background-color: #f6f3ff; /* 연보라 hover */
+}
 
- tr.reviewHeader {
-   background-color: rgb(218, 231, 255);
-   font-weight: bold;
- }
+.title {
+  text-align: left;
+  padding-left: 10px;
+  font-weight: 500;
+  color: #333;
+}
 
- tr.reviewBody {
-   background-color: #fdfdfd;
-   transition: background-color 0.2s ease;
- }
+/* 글쓰기 버튼 */
+.reviewWrite-btn {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #a78bfa, #c084fc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
+.reviewWrite-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #d8b4fe);
+}
 
- tr.reviewBody:hover {
-   background-color: #f1f6ff;
- }
-
- .title {
-   text-align: left;
-
- }
-
- .review-title {
-   text-align: left;
-   padding-left: 10px;
-   margin-bottom: 10px;
- }
-
- .review-wrapper {
-   max-width: 100%;
-   margin-right: 30px;
- }
-
-
-
- .reviewWrite-btn {
-   margin-left: 1000px;
-   margin-bottom: px;
-   width: 100px;
-   height: 40px;
-   font-size: 15px;
-   border: 0;
-   border-radius: 5px;
-   /* outline: 1.5px rgb(195, 205, 219) solid; */
-   background-color: aqua;
-   color: rgb(0, 0, 0);
-   cursor: pointer;
-   transition: background-color 0.2s ease;
- }
-
-
-
- .reviewWrite-btn:hover {  
-   background-color: #467be4;
- }
-
- .reviewWrite-btn:active {
-   background-color: rgb(225, 228, 233);
-   outline: 1.5px rgb(27, 76, 155) solid;
- }
-
-
-
- .reviewPageNum {
+/* 페이지 번호 */
+.reviewPageNum {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-  cursor: pointer;
+  gap: 16px;
+  margin-top: 24px;
 }
 
-/* .reviewPageNum .pageNumber {
+.reviewPageNum .pageNumber {
   padding: 8px 14px;
-  font-size: 14px;
-  border: none;
-  background-color: #e0eaff;
-  border-radius: 5px;
+  font-size: 15px;
+  border-radius: 6px;
+  background-color: #f1e7ff;
+  color: #333;
   cursor: pointer;
-} */
-
-.requestPageNum .pageNumber {
-  cursor: pointer;
-  font-size: 16px;
-  transition: color 0.3s ease;
+  transition: all 0.2s ease;
 }
-
 
 .reviewPageNum .pageNumber:hover {
-  color: #467be4;            /* 연한 파랑으로 강조 */
-  font-weight: bold;         /* 굵게 */
-  text-decoration: underline;/* 밑줄 표시 */
-}
-
-
-/* .reviewPageNum .pageNumber:hover {
-  background-color: #6495ED;
+  background-color: #c5b3f9;
   color: white;
   font-weight: bold;
-} */
+}
 
-
+.reviewPageNum .pageNumber.active {
+  background-color: #a78bfa;
+  color: white;
+  font-weight: bold;
+}

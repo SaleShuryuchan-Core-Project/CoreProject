@@ -1,0 +1,129 @@
+/* 📁 future.css */
+
+.future-wrapper {
+    padding: 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(to bottom, #f5f0ff, #ede6ff);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(180, 130, 255, 0.15);
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .future-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #6a1b9a;
+    margin-bottom: 20px;
+  }
+  
+  .future-result {
+    font-size: 17px;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f3e9ff;
+    border-left: 6px solid #a78bfa;
+  }
+  
+  .future-result.future {
+    background-color: #ede3fc;
+    border-left-color: #ba68c8;
+  }
+  
+  .future-divider {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px dashed #ccc;
+  }
+  
+  .future-input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .future-input-row input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #bca4ff;
+    font-size: 16px;
+  }
+  
+  .future-input-row input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(174, 136, 255, 0.2);
+    border-color: #9f7aea;
+  }
+  
+  .future-input-row button {
+    width: 200px;
+    padding: 12px 16px;
+    background-color: #b388ff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .future-input-row button:hover {
+    background-color: #9b5de5;
+  }
+  
+  .future-toggle-btn {
+    background: none;
+    border: none;
+    color: #6a1b9a;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .future-analysis-wrapper {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(130, 90, 255, 0.1);
+  }
+  
+  .markdown-output table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  
+  .markdown-output th {
+    background-color: #ede7f6;
+    color: #4a148c;
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+  }
+  
+  .markdown-output td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .markdown-output p {
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }  

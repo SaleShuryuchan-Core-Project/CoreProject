@@ -88,7 +88,7 @@ const CartPage = () => {
             checked={checkItems.includes(item.p_idx)}
             onChange={() => handleItemCheck(item.p_idx)}
           />
-          <img src={`http://localhost:8083${item.p_img1}`} alt={item.p_name} className="cart-image" />
+          <img src={item.p_img1} alt={item.p_name} className="cart-image" />
           <div className="cart-info">
             <div className="cart-name">{item.p_name}</div>
             <div className="cart-model">상품번호: {item.p_idx}</div>

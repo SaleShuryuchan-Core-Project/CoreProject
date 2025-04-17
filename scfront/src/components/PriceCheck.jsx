@@ -24,7 +24,7 @@ const PriceCheck = ({ onComplete }) => {
 
   // 선택한 항목들을 조합해서 모델명 완성
   const getPhoneName = () => {
-    return `${selectedManufacturer} ${selectedSeries} ${selectedModel} ${selectedVoume}`;
+    return `${selectedManufacturer} ${selectedModel} ${selectedVoume}`;
   };
 
   // '평균 중고가 확인' 버튼 클릭 시 실행
@@ -348,6 +348,5 @@ const PriceCheck = ({ onComplete }) => {
   </div>
   );
 };
-
 
 export default PriceCheck;
