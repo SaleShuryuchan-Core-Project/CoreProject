@@ -18,7 +18,7 @@ const Request_Write = () => {
   const [modelList, setModelList] = useState([]);
   const [volumeList, setVolumeList] = useState([]);
   const [rawData, setRawData] = useState([]);
-
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const navigate = useNavigate();
 
   // ✅ 로그인 유저의 u_id를 작성자로 설정
@@ -139,7 +139,7 @@ const Request_Write = () => {
       <h2>요청사항 작성</h2>
 
       <label>작성자</label>
-      <input type="text" value={writer} readOnly />
+      <input type="text" value={userInfo.name} readOnly />
 
       <label>제목</label>
       <input

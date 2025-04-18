@@ -10,7 +10,6 @@ const RequestPage = ({ openLoginSidePage }) => {
   const postsPerPage = 5;
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-
   useEffect(() => {
     axios.post('http://localhost:8083/controller/api/request/list')
       .then(res => setPosts(res.data))

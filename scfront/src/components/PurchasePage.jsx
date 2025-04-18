@@ -34,7 +34,7 @@ const PurchasePage = ({ openLoginSidePage }) => {
       openLoginSidePage(); // ✅ 사이드 로그인 창 열기
       return;
     }
-  
+
     axios.post("http://localhost:8083/controller/api/product/cart", {
       p_idx: p_idx,
       u_id: userInfo.u_id
@@ -52,7 +52,7 @@ const PurchasePage = ({ openLoginSidePage }) => {
       openLoginSidePage(); // ✅ 사이드 로그인 창 열기
       return;
     }
-  
+
     nav('/payment', {
       state: { selectedItems: [product] }
     });
@@ -76,9 +76,15 @@ const PurchasePage = ({ openLoginSidePage }) => {
       ) : (
         <div className="purchaseCard">
           <div className="mainImageWrapper">
-            <img src={product.p_img1} alt={product.p_name} className="mainProductImage" />
-            <img src={product.p_img2} alt={product.p_name} className="mainProductImage" />
-            <img src={product.p_img3} alt={product.p_name} className="mainProductImage" />
+            {product.p_img1 && (
+              <img src={product.p_img1} alt={`${product.p_name} 이미지1`} className="mainProductImage" />
+            )}
+            {product.p_img2 && (
+              <img src={product.p_img2} alt={`${product.p_name} 이미지2`} className="mainProductImage" />
+            )}
+            {product.p_img3 && (
+              <img src={product.p_img3} alt={`${product.p_name} 이미지3`} className="mainProductImage" />
+            )}
           </div>
           <div className="priceHighlight">
             {Number(product.price).toLocaleString()} 원
@@ -104,7 +110,8 @@ const PurchasePage = ({ openLoginSidePage }) => {
                 style={{ position: "relative" }}
               >
                 <Future
-                  modelName={product.p_name}
+                  modelName={product.p_name.replace("기본", "")} // 너무 긴 표현 정리
+                  capacity={product.capacity} // capacity도 있으면 전달
                   color={product.color}
                   기변상태={product.p_status}
                 />

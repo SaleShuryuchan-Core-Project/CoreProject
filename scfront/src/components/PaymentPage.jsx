@@ -10,6 +10,8 @@ const PaymentPage = () => {
   const selectedItems = location.state?.selectedItems || [];
   const selectedPIdxList = selectedItems.map(item => item.p_idx); // ✅ 선택된 상품의 p_idx 리스트
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const [buyer, setBuyer] = useState({ name: '', phone1: '', phone2: '', phone3: '' });
   const [delivery, setDelivery] = useState({
     recipient: '', phone1: '', phone2: '', phone3: '', zipcode: '', address: '', detail: '', memo: ''
@@ -103,7 +105,6 @@ const PaymentPage = () => {
   };
 
   const handleFakeOrder = async () => {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const discount = 0;
     const payAmount = totalAmount - discount;
     const orderData = {
@@ -137,7 +138,6 @@ const PaymentPage = () => {
           <img src={item.p_img1} alt={item.p_name} className="product-img" />
           <div className="product-info">
             <div className="product-name">{item.p_name}</div>
-            <div className="product-color">상품번호: {item.p_idx}</div>
           </div>
           <div className="price">{Number(item.price).toLocaleString()} <span className="won">원</span></div>
         </div>

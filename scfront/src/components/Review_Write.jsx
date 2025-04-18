@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // ✅ 서버와 통신 위해 추가
 import "../css/review_write.css";
@@ -6,7 +6,6 @@ import "../css/review_write.css";
 const Review_Write = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [writer, setWriter] = useState("");
   const [score, setScore] = useState(0); // ⭐ 별점
   const [hoverScore, setHoverScore] = useState(0); // ⭐ 마우스 hover 별점
   const [image, setImage] = useState(null); // 이미지 파일
@@ -14,6 +13,14 @@ const Review_Write = () => {
   const [uploading, setUploading] = useState(false);
   const [info, setInfo] = useState({});
   const navigate = useNavigate();
+  const [pidx, setPidx] = useState(2); // ✅ 실제 존재하는 P_IDX 값
+  const storedUserId = localStorage.getItem("u_id");
+  const [writer, setWriter] = useState(storedUserId || "");
+
+  useEffect(() => {
+    const userId = localStorage.getItem("u_id");
+    if (userId) setWriter(userId);
+  }, []);
 
   const uploadToImgbb = async (file, imageIndex) => {
     const formData = new FormData();
@@ -23,7 +30,7 @@ const Review_Write = () => {
       const res = await axios.post(
         `https://api.imgbb.com/1/upload?key=da2b2061055365320fc6e32a66dacf0d`,
         formData
-      );  
+      );
       const url = res.data.data.url;
 
       setInfo((prev) => {
@@ -45,6 +52,38 @@ const Review_Write = () => {
       setUploading(false);
     }
   };
+  // 새로추가함
+  const resizeImage = (file, maxWidth = 800) => { // 사진 사이즈를 줄여서 업로드함 
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const scaleSize = maxWidth / img.width;
+          canvas.width = maxWidth;
+          canvas.height = img.height * scaleSize;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob(
+            (blob) => {
+              const resizedFile = new File([blob], file.name, { type: file.type });
+              resolve(resizedFile);
+            },
+            file.type,
+            0.7 // 품질 0~1 사이 (0.7이면 꽤 줄어듦)
+          );
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+
 
   const handleFileChange = async (e, index) => {
     const file = e.target.files[0];
@@ -64,30 +103,28 @@ const Review_Write = () => {
     }
   };
 
-  
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!title || !detail || !writer) {
       alert("모든 항목을 입력해주세요.");
       return;
     }
-  
+
     try {
       const res = await axios.post(
         "http://localhost:8083/controller/api/review/write",
         {
-          p_idx: 21,
+          p_idx: 1,
           review_content: detail,
           review_ratings: score,
           review_img: info.p_img1 || "", // ✅ 업로드된 이미지 URL
           u_id: writer,
         }
       );
-  
+
       console.log("넘어감?", res);
-  
+
       if (res.data === "success") {
         alert("작성 완료!");
         navigate("/review");
@@ -99,8 +136,8 @@ const Review_Write = () => {
       alert("서버와 연결 실패");
     }
   };
-  
-  
+
+
   return (
     <form className="reviewForm" onSubmit={handleSubmit}>
       <h2>후기 작성</h2>
@@ -122,20 +159,20 @@ const Review_Write = () => {
       <label>사진 첨부</label>
       <input type="file" onChange={(e) => handleFileChange(e, 0)} />
       {preview.map((url, idx) =>
-            url ? (
-              <img
-                key={idx}
-                src={url}
-                alt={`미리보기 ${idx + 1}`}
-                width="150"
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "8px",
-                  marginRight: "10px",
-                }}
-              />
-            ) : null
-          )}
+        url ? (
+          <img
+            key={idx}
+            src={url}
+            alt={`미리보기 ${idx + 1}`}
+            width="150"
+            style={{
+              marginTop: "10px",
+              borderRadius: "8px",
+              marginRight: "10px",
+            }}
+          />
+        ) : null
+      )}
       <label>내용</label>
       <textarea
         rows="10"

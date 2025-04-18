@@ -207,6 +207,7 @@ function GeminiChat({ phoneName: initialPhoneName = "" }) {
                     className="recommend-img"
                   />
                   <p className="phone-name">{phone.p_name}</p>
+                  <p className="phone-name">{phone.color}</p>
                   <p className="phone-price">
                     {phone.price.toLocaleString()}원
                   </p>

@@ -78,9 +78,9 @@ const ProductManagementPage = () => {
           <span>전체선택</span>
         </div>
         <div className="management-header-buttons">
-          {/* <button className="delete-btn" onClick={handleDeleteSelected}>
+          <button className="delete-btn" onClick={handleDeleteSelected}>
             선택상품 삭제
-          </button> */}
+          </button>
           <button className="add-btn" onClick={() => nav("/ProductAdd")}>
             제품 추가
           </button>

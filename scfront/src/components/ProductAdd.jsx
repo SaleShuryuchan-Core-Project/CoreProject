@@ -72,11 +72,56 @@ const AddProductPage = () => {
       setUploading(false);
     }
   };
+// 새로추가함
+  const resizeImage = (file, maxWidth = 800) => { // 사진 사이즈를 줄여서 업로드함 
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+  
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const scaleSize = maxWidth / img.width;
+          canvas.width = maxWidth;
+          canvas.height = img.height * scaleSize;
+  
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  
+          canvas.toBlob(
+            (blob) => {
+              const resizedFile = new File([blob], file.name, { type: file.type });
+              resolve(resizedFile);
+            },
+            file.type,
+            0.7 // 품질 0~1 사이 (0.7이면 꽤 줄어듦)
+          );
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  };
 
   const handleFileChange = async (e, index) => {
     const file = e.target.files[0];
-    if (file) await uploadToImgbb(file, index);
+    if (!file) return;
+  
+    const resized = await resizeImage(file);
+  
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview((prev) => {
+        const updated = [...prev];
+        updated[index] = reader.result;
+        return updated;
+      });
+    };
+    reader.readAsDataURL(resized);
+  
+    await uploadToImgbb(resized, index);
   };
+  
 
   const handleManufacturerChange = (e) => {
     const manufacturer = e.target.value;
@@ -225,7 +270,7 @@ const AddProductPage = () => {
 
         {/* 직접 업로드 */}
         <div className="form-group">
-          <label>또는 직접 업로드:</label>
+          <label>직접 업로드:</label>
           <input type="file" onChange={(e) => handleFileChange(e, 0)} />
           <input type="file" onChange={(e) => handleFileChange(e, 1)} />
           <input type="file" onChange={(e) => handleFileChange(e, 2)} />

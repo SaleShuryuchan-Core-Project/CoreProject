@@ -64,22 +64,22 @@ const LeftContainer = () => {
               speed={500}
             >
               <SwiperSlide>
-                <a href="http://www.smhrd.or.kr">
+                <a href="http://www.smhrd.or.kr" target="_blank" rel="noopener noreferrer">
                   <img src={ad1} alt="ad1" />
                 </a>
               </SwiperSlide>
               <SwiperSlide>
-                <a href="http://www.smhrd.or.kr">
+                <a href="http://www.smhrd.or.kr" target="_blank" rel="noopener noreferrer">
                   <img src={ad2} alt="ad2" />
                 </a>
               </SwiperSlide>
               <SwiperSlide>
-                <a href="http://www.smhrd.or.kr">
+                <a href="http://www.smhrd.or.kr" target="_blank" rel="noopener noreferrer">
                   <img src={ad3} alt="ad3" />
                 </a>
               </SwiperSlide>
               <SwiperSlide>
-                <a href="http://www.smhrd.or.kr">
+                <a href="http://www.smhrd.or.kr" target="_blank" rel="noopener noreferrer">
                   <img src={ad4} alt="ad4" />
                 </a>
               </SwiperSlide>
@@ -98,7 +98,7 @@ const LeftContainer = () => {
               speed={500}
             >
               <SwiperSlide>
-                <a href="https://www.youtube.com/@HodooDady/videos">
+                <a href="https://www.youtube.com/@HodooDady/videos" target="_blank" rel="noopener noreferrer">
                   <img
                     src={ad5}
                     alt="ad1"
@@ -107,7 +107,7 @@ const LeftContainer = () => {
                 </a>
               </SwiperSlide>
               <SwiperSlide>
-                <a href="https://www.youtube.com/@%ED%95%B4%EB%8F%84%EA%B8%B4%ED%95%B4%EB%B4%A4%EC%96%B4">
+                <a href="https://www.youtube.com/@%ED%95%B4%EB%8F%84%EA%B8%B4%ED%95%B4%EB%B4%A4%EC%96%B4" target="_blank" rel="noopener noreferrer">
                   <img
                     src={ad6}
                     alt="ad2"
