@@ -69,6 +69,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 - 🧾 마이페이지
 ![screen3](./assets/screen3.png)
 - 🔐 로그인/회원가입
+![screen5](./assets/screen5.png)
 - 🖨 예상시세
 ![screen4](./assets/screen4.png)
 
