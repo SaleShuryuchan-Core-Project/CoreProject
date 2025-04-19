@@ -9,8 +9,11 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 ## 👨‍👩‍👧‍👦 팀 소개
 <img src="./assets/KimChanYu.png" width="100" alt="김찬유" />
 - **김찬유** : PM / Front-End / Back-End
+<img src="./assets/LeeSeil.png" width="100" alt="이세일" />
 - **이세일** : Front-End / Crawling
+<img src="./assets/LeeChanik.png" width="100" alt="이찬익" />
 - **이찬익** : 프롬프트 엔지니어링 / Back-End
+<img src="./assets/LeeChanyoung.png" width="100" alt="김찬유" />
 - **이찬영** : Back-End / API 연동 및 전처리
 
 ## 🔧 주요 기능
