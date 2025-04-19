@@ -7,14 +7,30 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 보다 효율적이고 신뢰도 높은 중고폰 거래를 지원하는 웹 서비스입니다.
 
 ## 👨‍👩‍👧‍👦 팀 소개
-<img src="./assets/KimChanYu.png" width="100" alt="김찬유" />
-- **김찬유** : PM / Front-End / Back-End
-<img src="./assets/LeeSeil.png" width="100" alt="이세일" />
-- **이세일** : Front-End / Crawling
-<img src="./assets/LeeChanik.png" width="100" alt="이찬익" />
-- **이찬익** : 프롬프트 엔지니어링 / Back-End
-<img src="./assets/LeeChanyoung.png" width="100" alt="김찬유" />
-- **이찬영** : Back-End / API 연동 및 전처리
+<table>
+  <tr>
+    <td align="center">
+      <img src="./assets/KimChanYu.png" width="100" alt="김찬유" /><br/>
+      <b>김찬유</b><br/>
+      PM / Front-End / Back-End
+    </td>
+    <td align="center">
+      <img src="./assets/LeeSeil.png" width="100" alt="이세일" /><br/>
+      <b>이세일</b><br/>
+      Front-End / Crawling
+    </td>
+    <td align="center">
+      <img src="./assets/LeeChanik.png" width="100" alt="이찬익" /><br/>
+      <b>이찬익</b><br/>
+      프롬프트 엔지니어링 / Back-End
+    </td>
+    <td align="center">
+      <img src="./assets/LeeChanyoung.png" width="100" alt="이찬영" /><br/>
+      <b>이찬영</b><br/>
+      Back-End / API 연동 및 전처리
+    </td>
+  </tr>
+</table>
 
 ## 🔧 주요 기능
 - ✅ **AI 기반 시세 분석** : Gemini API를 통한 스마트폰 모델 실시간 시세 분석 및 시각화
