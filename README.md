@@ -7,6 +7,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 보다 효율적이고 신뢰도 높은 중고폰 거래를 지원하는 웹 서비스입니다.
 
 ## 👨‍👩‍👧‍👦 팀 소개
+<img src="./assets/KimChanYu.png" width="300" alt="김찬유" />
 - **김찬유** : PM / Front-End / Back-End
 - **이세일** : Front-End / Crawling
 - **이찬익** : 프롬프트 엔지니어링 / Back-End
