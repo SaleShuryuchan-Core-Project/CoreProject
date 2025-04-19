@@ -37,7 +37,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 - 사용자는 React 기반 웹에서 요청
 - Spring MVC 백엔드에서 Gemini API 및 DB 연동
 - 이미지/결제/주소검색은 외부 API 통해 처리
-<img src="./assets/"시스템아키텍쳐.png" width="300" alt="시스템아키텍쳐" />
+![시스템 아키텍처](./assets/시스템아키텍쳐.png)
 
 ## 🧩 주요 페이지
 - 📱 시세 조회
