@@ -90,7 +90,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 
 > 사용자 중심으로 구성된 전체 서비스 이용 순서
 
-<img src="./assets/서비스흐름도.png" width="600" alt="서비스 흐름도" />
+<img src="./assets/서비스.png" width="600" alt="서비스 흐름도" />
 
 ---
 
@@ -98,7 +98,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 
 > DB 테이블 간의 관계 구조를 명확히 표현
 
-<img src="./assets/ER다이어그램.png" width="600" alt="ER 다이어그램" />
+<img src="./assets/er.png" width="600" alt="ER 다이어그램" />
 
 ---
 
