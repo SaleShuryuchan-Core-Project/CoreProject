@@ -2,8 +2,6 @@
 AI 기반 중고폰 시세 분석 및 거래 플랫폼  
 중고폰 시세를 빠르고 정확하게, 개인 맞춤형 분석까지!
 
-![홈화면](./assets/home.png)
-
 ---
 
 ## 📌 프로젝트 소개
@@ -84,31 +82,57 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 
 > 외부 API 기반의 요청 흐름과 백엔드 연결 구조
 
-![시스템 아키텍처](./assets/시스템아키텍쳐.png)
+<img src="./assets/시스템아키텍쳐.png" width="600" alt="시스템 아키텍처" />
+
+---
+
+## 🔁 서비스 흐름도
+
+> 사용자 중심으로 구성된 전체 서비스 이용 순서
+
+<img src="./assets/서비스흐름도.png" width="600" alt="서비스 흐름도" />
+
+---
+
+## 🧬 ER 다이어그램
+
+> DB 테이블 간의 관계 구조를 명확히 표현
+
+<img src="./assets/ER다이어그램.png" width="600" alt="ER 다이어그램" />
 
 ---
 
 ## 🧩 주요 화면 구성
 
-### 📱 시세 조회
+### 📱 시세 조회  
 > 기종/용량/색상 선택 후 Gemini AI 분석  
-![시세조회](./assets/screen1.png)
+<img src="./assets/screen1.png" width="500" alt="시세조회 화면" />
 
-### 📝 요청 게시판
+### 📝 요청 게시판  
 > 미등록 제품 요청 등록  
-![요청게시판](./assets/screen2.png)
+<img src="./assets/screen2.png" width="500" alt="요청게시판 화면" />
 
-### 📦 마이페이지 & 결제
+### 📦 마이페이지 & 결제  
 > 구매 내역, 장바구니, 회원정보  
-![마이페이지](./assets/screen3.png)
+<img src="./assets/screen3.png" width="500" alt="마이페이지 화면" />
 
-### 🖨 예상 시세 예측
+### 🖨 예상 시세 예측  
 > 향후 1~3년 뒤 예상 시세 분석  
-![예상시세](./assets/screen4.png)
+<img src="./assets/screen4.png" width="500" alt="예상시세 화면" />
 
-### 🔐 로그인/회원가입
+### 🔐 로그인/회원가입  
 > 카카오톡 API 연동 포함  
-![로그인](./assets/screen5.png)
+<img src="./assets/screen5.png" width="500" alt="로그인 화면" />
+
+---
+
+## 🎬 시연 영상
+
+> 주요 기능 시연 영상 (YouTube 링크 혹은 GIF 삽입 가능)
+
+[👉 시연 영상 바로가기](https://youtu.be/your-demo-link)  
+<!-- 또는 GIF 삽입 시 -->
+<!-- <img src="./assets/demo.gif" width="700" alt="시연 영상 GIF" /> -->
 
 ---
 
@@ -138,5 +162,3 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 
 > 실제 사용한 통계 기사와 시장 분석 내용은 GitHub Wiki 혹은 발표 자료 참고  
 > 세부 자료: 아주경제, 조선일보, 매거진한경, 이데일리 외
-
----
