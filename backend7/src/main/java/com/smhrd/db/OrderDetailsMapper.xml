@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.db.OrderDetailsMapper">
+
+  <!-- 주문상세 전체 조회 -->
+  <select id="selectAllDetails" resultType="com.smhrd.model.OrderDetailsDTO">
+    SELECT * FROM TB_ORDER
+  </select>
+
+  <!-- 주문상세 상태 업데이트 -->
+  <update id="updateOrderStatus" parameterType="com.smhrd.model.OrderDetailsDTO">
+    UPDATE TB_ORDER_DETAILS
+    SET ORDER_STATUS = #{order_status}
+    WHERE DETAIL_IDX = #{detail_idx}
+  </update>
+
+  <!-- 주문정보 상태도 함께 업데이트 -->
+  <update id="updateMainOrderStatus" >
+    UPDATE TB_ORDER
+    SET ORDER_STATUS = #{order_status}
+    WHERE ORDER_IDX = #{order_idx}
+  </update>
+
+</mapper>
