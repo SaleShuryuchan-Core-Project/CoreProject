@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.db.RequestMapper">
+  <insert id="insertRequest" parameterType="com.smhrd.model.RequestDTO">
+    INSERT INTO TB_REQUEST (U_ID, REQ_TITLE, REQ_CONTENT, CREATED_AT, REQ_MODEL)
+    VALUES (#{u_id}, #{req_title}, #{req_content}, NOW(), #{req_model})
+  </insert>
+
+  <select id="getAllRequests" resultType="com.smhrd.model.RequestDTO">
+    SELECT * FROM TB_REQUEST ORDER BY REQ_IDX DESC
+  </select>
+
+  <select id="getRequestDetail" parameterType="int" resultType="com.smhrd.model.RequestDTO">
+    SELECT * FROM TB_REQUEST WHERE REQ_IDX = #{req_idx}
+  </select>
+</mapper>

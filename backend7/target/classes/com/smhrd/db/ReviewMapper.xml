@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.db.ReviewMapper">
+
+    <insert id="insertReview">
+        INSERT INTO TB_REVIEW (P_IDX, REVIEW_CONTENT, REVIEW_RATINGS, REVIEW_IMG, U_ID)
+        VALUES (#{p_idx}, #{review_content}, #{review_ratings}, #{review_img}, #{u_id})
+    </insert>
+
+    <select id="getAllReviews" resultType="com.smhrd.model.ReviewDTO">
+        SELECT * FROM TB_REVIEW ORDER BY REVIEW_IDX DESC
+    </select>
+
+    <select id="getReviewById" resultType="com.smhrd.model.ReviewDTO">
+        SELECT * FROM TB_REVIEW WHERE REVIEW_IDX = #{review_idx}
+    </select>
+
+</mapper>
+ 

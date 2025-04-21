@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.ProductMapper">
+
+	<!-- <select id="selectTop3Products" resultType="com.smhrd.model.ProductDTO">
+    SELECT P_IDX, P_NAME, PRICE, P_IMG1
+    FROM TB_PRODUCT
+    WHERE P_OWNERSHIP = 0
+    ORDER BY CREATED_AT DESC
+    LIMIT 3
+  </select> -->
+  
+  	<select id="selectProducts" parameterType="String" resultType="com.smhrd.model.ProductDTO">
+  		select * from TB_PRODUCT where P_NAME=#{phone} and P_STATUS != "판매완료"
+  	</select>
+	
+	<select id="detail" parameterType="String" resultType="com.smhrd.model.PruductDetailDTO">
+		select * from TB_PRODUCT where P_IDX = #{p_idx}
+	</select>
+	
+	<insert id="cart" parameterType="com.smhrd.model.PruductDetailDTO">
+		insert into TB_CART  (U_ID, P_IDX) values (#{u_id}, #{p_idx} )
+	</insert>
+
+</mapper>
