@@ -74,7 +74,7 @@ AI 기반 중고폰 시세 분석 및 거래 플랫폼
 | **주소 검색**   | Daum 우편번호 API             |
 | **결제**       | PortOne (Iamport)             |
 | **DB**         | MySQL                         |
-| **협업 도구**   | VSCode, GitHub, Notion        |
+| **협업 도구**   | VSCode, GitHub               |
 
 ---
 
